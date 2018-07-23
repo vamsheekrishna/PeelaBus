@@ -72,15 +72,19 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
-//Initializing views
-        editTextEmail = (EditText) view.findViewById(R.id.editTextEmail);
-        Button forgotPassword = (Button) view.findViewById(R.id.forgot_password);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        View header = inflater.inflate(R.layout.login_header,null);
+        mHeaderVIew.addView(header);
+        View body = inflater.inflate(R.layout.login_body, null);
+        mBodyVIew.addView(body);
+        //Initializing views
+        editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
+        Button forgotPassword = (Button) body.findViewById(R.id.forgot_password);
         forgotPassword.setOnClickListener(this);
         editTextEmail.setText("7877006485");
-        editTextPassword = (EditText) view.findViewById(R.id.editTextPassword);
+        editTextPassword = (EditText) body.findViewById(R.id.editTextPassword);
         editTextPassword.setText("111111");
-        AppCompatButton buttonLogin = (AppCompatButton) view.findViewById(R.id.buttonLogin);
+        AppCompatButton buttonLogin = (AppCompatButton) body.findViewById(R.id.ok_button);
 
         //Adding click listener
         assert buttonLogin != null;
@@ -205,7 +209,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 mListener.goToForgotPasswordScreen();
                 break;
 
-            case R.id.buttonLogin:
+            case R.id.ok_button:
                 final String email = editTextEmail.getText().toString();
                 Log.i("email","email==" + email);
                 if ( !isValidMobile(email) ) {

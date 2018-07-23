@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="32dp"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -11,24 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:elevation="8dp"
+        android:elevation="16dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="0.0px"
         android:clipToPadding="false"
         android:clipChildren="false"
-        app:cardElevation="10dp"
+        app:cardElevation="1dp"
         app:cardPreventCornerOverlap="false"
-        android:minHeight="300dp"
+        android:minHeight="250dp"
         android:paddingBottom="-35dp">
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.AppCompatButton
         android:layout_below="@+id/view_button_body"
         android:layout_centerHorizontal="true"
         android:id="@+id/ok_button"
-        android:layout_width="300dp"
-        android:layout_marginTop="-35dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="-20dp"
         android:text="Login"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:background="@drawable/curved_button"
         style="@style/yellow_button"/>
 </RelativeLayout>

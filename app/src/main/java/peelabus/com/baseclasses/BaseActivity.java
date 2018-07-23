@@ -24,6 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     boolean isWifiConnected = false;
     boolean isMobileDataConnected = false;
     protected String TAG = "BaseActivity";
+    private GlobalDialogBox globalDialogBox;
 
     public void setTagName(String name) {
         String classpath[] = name.split("\\.");
@@ -32,6 +33,19 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                        startActivity(intent);
+                    }
+                }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
     }
 
     @Override
@@ -64,16 +78,13 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     }
     @Override
     public void onNetworkConnected() {
-
-        Log.d(TAG, "Network Connected.");
-        Toast.makeText(this, "Network Connected.", Toast.LENGTH_SHORT).show();
+        globalDialogBox.alertDialog.dismiss();
     }
 
     @Override
     public void onNetworkDisConnected() {
-        alertDialog();
-        Log.d(TAG, "Network DisConnected.");
-        Toast.makeText(this, "Network DisConnected.", Toast.LENGTH_SHORT).show();
+        //alertDialog();
+        globalDialogBox.alertDialog.show();
     }
 
     @Override

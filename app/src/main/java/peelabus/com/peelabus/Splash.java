@@ -33,6 +33,7 @@ public class Splash extends BaseActivity {
 
     @Override
     public void onNetworkConnected() {
+        super.onNetworkConnected();
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         if(isNetworkAvailable()) {
@@ -55,11 +56,5 @@ public class Splash extends BaseActivity {
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }
-    }
-
-    @Override
-    public void onNetworkDisConnected() {
-        Log.d(TAG, "Network DisConnected.");
-        Toast.makeText(this, "Network DisConnected.", Toast.LENGTH_SHORT).show();
     }
 }

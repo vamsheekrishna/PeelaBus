@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="350dp"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    android:id="@+id/linearLayout"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    >
+        <RelativeLayout
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/view_button_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:elevation="16dp"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
+                    app:cardElevation="1dp"
+                    android:background="@drawable/loginlayout"
+                    app:cardPreventCornerOverlap="false"
+                    android:minHeight="250dp"
+                    android:paddingBottom="-35dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal"
+                            android:layout_marginBottom="85dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/linearLayout3"
+                            android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="177dp"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:text="LOGIN"
+                                    style="@style/logintitle"
+                                    android:textSize="@dimen/logname" />
+
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:id="@+id/textInputLayout3"
+                                    android:layout_width="244dp"
+                                    android:layout_height="56dp"
+                                    android:layout_marginLeft="20dp"
+
+                                    android:layout_marginRight="20dp"
+                                    android:layout_weight="0.09">
+
+                                        <EditText
+                                            android:id="@+id/editTextEmail"
+                                            style="@style/formlabel"
+                                            android:layout_width="262dp"
+                                            android:layout_height="wrap_content"
+                                            android:hint="Email or Mobile Number"
+                                            android:inputType="textEmailAddress" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="242dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginTop="11dp"
+                                    android:id="@+id/textInputLayout4"
+                                    android:layout_weight="0.08">
+
+                                        <EditText
+                                            android:id="@+id/editTextPassword"
+                                            android:layout_width="256dp"
+                                            android:layout_height="wrap_content"
+                                            android:hint="Password"
+                                            style="@style/formlabel"
+                                            android:inputType="textPassword"/>
+                                </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_below="@+id/view_button_body"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/ok_button"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="-20dp"
+                    android:text="Login"
+                    android:layout_height="40dp"
+                    android:background="@drawable/curved_button"
+                    style="@style/yellow_button"/>
+
+
+                <Button
+                    android:id="@+id/forgot_password"
+                    style="@style/forgotpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="FORGOT PASSWORD?"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+</LinearLayout>
