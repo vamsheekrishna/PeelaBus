@@ -1,5 +1,6 @@
 package peelabus.com.authentication;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -83,6 +84,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String password = editTextPassword.getText().toString().trim();
         Log.i("hey", "hey: " + email);
         Log.i("hey", "hey: " + password);
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.show();
         //Creating a string request
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LOGIN_URL,
 
@@ -90,53 +94,66 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onResponse(String response) {
-                        Log.i("resp1", "resp1: " + response);
-                        //If we are getting success from server
-                        JSONObject jsonObject = null;
                         try {
-                            jsonObject = new JSONObject(response);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Log.i("jsonObj", "jsonObj:" + jsonObject);
-                        JSONArray result = null;
-                        try {
-                            result = jsonObject.getJSONArray("Result");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Log.i("jsonarray","jsonarray:" + result);
-                        if (result != null && result.length()>0) {
-                            if (!response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
-                                //Creating a shared preference
-                                Log.i("resp", "resp: " + response);
-                                SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                                //Creating editor to store values to shared preferences
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                //Adding values to editor
-                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.EMAIL_SHARED_PREF, email);
-                                editor.putString(Config.RESPONSE, response);
-
-                                //Saving values to editor
-                                editor.commit();
-
-                                //Starting profile activity
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
+                            Log.i("resp1", "resp1: " + response);
+                            //If we are getting success from server
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                    }else{
-                            //If the server response is not success
-                            //Displaying an error message on toast
+                            Log.i("jsonObj", "jsonObj:" + jsonObject);
+                            JSONArray result = null;
+                            try {
+                                result = jsonObject.getJSONArray("Result");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Log.i("jsonarray","jsonarray:" + result);
+                            if (result != null && result.length()>0) {
+                                if (!response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
+                                    //Creating a shared preference
+                                    Log.i("resp", "resp: " + response);
+                                    SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+                                    //Creating editor to store values to shared preferences
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                    //Adding values to editor
+                                    editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                                    editor.putString(Config.EMAIL_SHARED_PREF, email);
+                                    editor.putString(Config.RESPONSE, response);
+
+                                    //Saving values to editor
+                                    editor.commit();
+
+                                    //Starting profile activity
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }else{
+                                //If the server response is not success
+                                //Displaying an error message on toast
+                                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (Exception e) {
                             Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                        } finally {
+                            pDialog.dismiss();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        try {
+
+                        } catch (Exception e){
+
+                        } finally {
+                            pDialog.dismiss();
+                        }
                         //You can handle error here if you want
                     }
                 }){
