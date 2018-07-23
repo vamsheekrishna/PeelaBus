@@ -1,6 +1,8 @@
 package peelabus.com.peelabus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,8 +40,17 @@ public class Splash extends BaseActivity {
                 @Override
                 public void run() {
                     /* Create an Intent that will start the Menu-Activity. */
-                    Intent mainIntent = new Intent(Splash.this, LoginActivity.class);
-                    startActivity(mainIntent);
+                    SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                    boolean loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+                    //If we will get true
+                    if(loggedIn){
+                        //We will start the Profile Activity
+                        Intent intent = new Intent(Splash.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent mainIntent = new Intent(Splash.this, LoginActivity.class);
+                        startActivity(mainIntent);
+                    }
                     finish();
                 }
             }, SPLASH_DISPLAY_LENGTH);

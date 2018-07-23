@@ -9,10 +9,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
+
+import peelabus.com.R;
 
 public abstract class BaseActivity extends AppCompatActivity implements OnBaseAppListener {
 
@@ -57,13 +62,19 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
         Log.d(TAG, "Network Changing");
         Toast.makeText(this, "Network Changing........", Toast.LENGTH_SHORT).show();
     }
+    @Override
+    public void onNetworkConnected() {
 
-    /*@Override
+        Log.d(TAG, "Network Connected.");
+        Toast.makeText(this, "Network Connected.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onNetworkDisConnected() {
         alertDialog();
         Log.d(TAG, "Network DisConnected.");
         Toast.makeText(this, "Network DisConnected.", Toast.LENGTH_SHORT).show();
-    }*/
+    }
 
     @Override
     public void checkNetworkConnection() {
@@ -98,6 +109,20 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
             onNetworkDisConnected();
         }
     }
+    protected void addFragment(Fragment fragment, boolean isReplace, boolean isAddToBackStack, String fragment_name) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        if(isReplace) {
+            fragmentTransaction.replace(R.id.root_content, fragment, fragment_name);
+        } else {
+            fragmentTransaction.add(R.id.root_content, fragment, fragment_name);
+        }
+        if(isAddToBackStack) {
+            fragmentTransaction.addToBackStack(fragment_name);
+        }
+        fragmentTransaction.commit();
+    }
+
     public void alertDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setMessage("Network not found.");
