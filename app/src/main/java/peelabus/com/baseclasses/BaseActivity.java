@@ -14,7 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-public abstract class BaseActivity extends AppCompatActivity implements OnBaseAppListener{
+public abstract class BaseActivity extends AppCompatActivity implements OnBaseAppListener {
 
     boolean isWifiConnected = false;
     boolean isMobileDataConnected = false;
@@ -51,11 +51,6 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
             checkNetworkConnection();
         }
     };
-    @Override
-    public void onNetworkConnected() {
-        Log.d(TAG, "Network Connected.");
-        Toast.makeText(this, "Network Connected.", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onNetworkChanging() {
@@ -63,12 +58,12 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
         Toast.makeText(this, "Network Changing........", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+    /*@Override
     public void onNetworkDisConnected() {
         alertDialog();
         Log.d(TAG, "Network DisConnected.");
         Toast.makeText(this, "Network DisConnected.", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     @Override
     public void checkNetworkConnection() {

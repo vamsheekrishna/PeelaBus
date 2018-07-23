@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.kiriti.peelabus.Track">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/mapFragment" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:id="@+id/linearLayout5">
+
+        <!--<TextView-->
+            <!--android:id="@+id/textView20"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:lines="2"-->
+            <!--android:maxLines="2"-->
+            <!--android:text="35\nSpeed"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingBottom="10dp"/>-->
+
+        <TextView
+            android:id="@+id/rem_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="35\nSpeed"
+            android:drawableLeft="@drawable/distance_remaining"
+            android:drawableStart="@drawable/distance_remaining"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+
+        <TextView
+            android:id="@+id/eta_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:maxLines="2"
+            android:text="35\nSpeed"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#80000000"
+        android:weightSum="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_driver"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/changepassword_bg"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#ECA208"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/Driver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.56"
+                android:text="Lorem Ipsum"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/Driverdetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.56"
+                android:text="Lorem Ipsum is simply dummy apple micro soft it."
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+
+        <!--<Button-->
+            <!--android:id="@+id/button7"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:layout_weight="0.12"-->
+            <!--android:background="#ECA208"-->
+            <!--android:drawableTop="@mipmap/info_icon"-->
+            <!--android:text="Info"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:textColor="@color/white"-->
+            <!--/>-->
+
+        <Button
+            android:id="@+id/call"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#807f7f7f"
+            android:drawableLeft="@mipmap/call_icon"
+            android:gravity="center_vertical"
+            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
+            android:paddingLeft="10dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
