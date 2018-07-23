@@ -82,12 +82,12 @@
     </style>
 
     <style name="yellow_button">
-        <item name="android:background">#febc10</item>
         <item name="android:shadowColor"> #000000</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#fffefe</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:background">#febc10</item>
     </style>
 
     <style name="forgotpassword">

@@ -6,10 +6,18 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/view_button_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:elevation="8dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="false"
         android:minHeight="300dp"
         android:paddingBottom="-35dp">
     </android.support.v7.widget.CardView>
@@ -21,5 +29,6 @@
         android:layout_marginTop="-35dp"
         android:text="Login"
         android:layout_height="70dp"
+        android:background="@drawable/curved_button"
         style="@style/yellow_button"/>
 </RelativeLayout>
