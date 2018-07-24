@@ -10,8 +10,8 @@
     android:id="@+id/linearLayout"
     android:layout_alignParentTop="true"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    >
+    android:layout_alignParentStart="true">
+
         <RelativeLayout
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
@@ -26,12 +26,12 @@
                     android:elevation="16dp"
                     android:divider="@android:color/transparent"
                     android:dividerHeight="0.0px"
-                    android:clipToPadding="false"
-                    android:clipChildren="false"
+                    android:clipToPadding="true"
+                    android:clipChildren="true"
                     app:cardElevation="1dp"
                     android:background="@drawable/loginlayout"
                     app:cardPreventCornerOverlap="false"
-                    android:minHeight="250dp"
+                    android:minHeight="180dp"
                     android:paddingBottom="-35dp">
                         <LinearLayout
                             android:layout_width="match_parent"

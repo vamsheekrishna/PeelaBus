@@ -33,19 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-                        startActivity(intent);
-                    }
-                }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
+        globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this);
     }
 
     @Override
@@ -76,15 +64,25 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
         Log.d(TAG, "Network Changing");
         Toast.makeText(this, "Network Changing........", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void CloseApp() {
+        finish();
+        System.exit(0);
+    }
+
     @Override
     public void onNetworkConnected() {
-        globalDialogBox.alertDialog.dismiss();
+        //globalDialogBox.alertDialog.dismiss();
     }
 
     @Override
     public void onNetworkDisConnected() {
         //alertDialog();
-        globalDialogBox.alertDialog.show();
+        //globalDialogBox.alertDialog.show();
+        CustomFragment customFragment = CustomFragment.newInstance("", "");
+        getSupportFragmentManager().beginTransaction().add(customFragment, "customFragment").commit();
+
     }
 
     @Override
@@ -134,25 +132,6 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
         fragmentTransaction.commit();
     }
 
-    public void alertDialog() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("Network not found.");
-        alertDialog.setPositiveButton("Check Setting",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-                        startActivity(intent);
-                    }
-                });
-        alertDialog.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-
-        alertDialog.show();
-    }
     @Override
     public boolean isNetworkAvailable() {
         return isWifiConnected || isMobileDataConnected;
