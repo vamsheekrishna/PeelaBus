@@ -3,6 +3,7 @@ package peelabus.com.authentication;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseActivity;
@@ -49,7 +50,21 @@ public class LoginActivity extends BaseActivity implements OnLoginInteractionLis
     public void goToLoginScreen() {
         /*LoginFragment loginFragment = LoginFragment.newInstance("", "");
         addFragment(loginFragment, true, true, "LoginFragment");*/
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        //this will clear the back stack and displays no animation on the screen
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
 
+    @Override
+    public void goToOTPScreen() {
+        ValidateOTPFragment validateOTPFragment = ValidateOTPFragment.newInstance("", "");
+        addFragment(validateOTPFragment, true, true, "ValidateOTPFragment");
+    }
+
+    @Override
+    public void goToChangePasswordScreen() {
+        ChangePasswordFragment changePasswordFragment = ChangePasswordFragment.newInstance("", "");
+        addFragment(changePasswordFragment, true, true, "ChangePasswordFragment");
     }
 
     @Override

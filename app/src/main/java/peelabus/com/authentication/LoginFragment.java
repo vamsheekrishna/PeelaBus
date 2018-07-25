@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +34,7 @@ import java.util.regex.Pattern;
 
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseFragment;
+import peelabus.com.models.ParentLogin;
 import peelabus.com.peelabus.Config;
 
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
@@ -148,7 +151,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                                     //Creating editor to store values to shared preferences
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-
+                                   /*Gson gson = new GsonBuilder().create();
+                                   ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*/
                                     //Adding values to editor
                                     editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
                                     editor.putString(Config.EMAIL_SHARED_PREF, email);

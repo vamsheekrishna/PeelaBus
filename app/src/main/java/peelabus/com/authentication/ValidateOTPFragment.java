@@ -1,21 +1,18 @@
 package peelabus.com.authentication;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseFragment;
 
-public class ForgotPasswordFragment extends BaseFragment implements View.OnClickListener {
+public class ValidateOTPFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -25,12 +22,12 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
     private OnLoginInteractionListener mListener;
     private AppCompatEditText editText1;
 
-    public ForgotPasswordFragment() {
+    public ValidateOTPFragment() {
         // Required empty public constructor
     }
 
-    public static ForgotPasswordFragment newInstance(String param1, String param2) {
-        ForgotPasswordFragment fragment = new ForgotPasswordFragment();
+    public static ValidateOTPFragment newInstance(String param1, String param2) {
+        ValidateOTPFragment fragment = new ValidateOTPFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,21 +55,18 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
         View header = inflater.inflate(R.layout.login_header,null);
         mHeaderVIew.addView(header);
         View body = inflater.inflate(R.layout.fragment_forgot_password, null);
+        mBodyVIew.addView(body);
+
+        AppCompatTextView loginBodyViewHeader = body.findViewById(R.id.login_body_view_header);
+        loginBodyViewHeader.setText(getText(R.string.otp));
 
         body.findViewById(R.id.textInputLayout2).setVisibility(View.GONE);
 
         editText1 = view.findViewById(R.id.editText1);
+        editText1.setHint(getString(R.string.enter_otp));
 
-        mBodyVIew.addView(body);
-        //Initializing views
-        /*editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
-        Button forgotPassword = (Button) body.findViewById(R.id.forgot_password);
-        forgotPassword.setOnClickListener(this);
-        editTextEmail.setText("7877006485");
-        editTextPassword = (EditText) body.findViewById(R.id.editTextPassword);
-        editTextPassword.setText("111111");*/
         AppCompatButton buttonLogin = body.findViewById(R.id.ok_button);
-
+        buttonLogin.setText(getText(R.string.next));
         //Adding click listener
         assert buttonLogin != null;
         buttonLogin.setOnClickListener(this);
@@ -100,7 +94,7 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ok_button :
-                    mListener.goToOTPScreen();
+                    mListener.goToChangePasswordScreen();
                 break;
         }
     }

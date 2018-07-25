@@ -24,6 +24,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="check_network_status">Checking Network Stability...</string>
+    <string name="login">Login</string>
+    <string name="hint_password">Password</string>
+    <string name="email_or_mobile_number">Email or Mobile Number</string>
+    <string name="forgot_your_password">Forgot Your Password</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="next">NEXT</string>
+    <string name="done">DONE</string>
+    <string name="otp">Enter Your OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="reset_password_text">Reset Your Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="new_password">New Password</string>
     <!--<string name="directionsApiKey">AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc</string>-->
 
 </resources>
