@@ -2,6 +2,7 @@ package peelabus.com.authentication;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
@@ -21,6 +22,7 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
 
     private OnLoginInteractionListener mListener;
     private AppCompatEditText editText1;
+    private TextInputLayout textInputLayout;
 
     public ValidateOTPFragment() {
         // Required empty public constructor
@@ -63,7 +65,9 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
         body.findViewById(R.id.textInputLayout2).setVisibility(View.GONE);
 
         editText1 = view.findViewById(R.id.editText1);
-        editText1.setHint(getString(R.string.enter_otp));
+        textInputLayout = view.findViewById(R.id.textInputLayout1);
+        textInputLayout.setHint(getString(R.string.enter_otp));
+
 
         AppCompatButton buttonLogin = body.findViewById(R.id.ok_button);
         buttonLogin.setText(getText(R.string.next));

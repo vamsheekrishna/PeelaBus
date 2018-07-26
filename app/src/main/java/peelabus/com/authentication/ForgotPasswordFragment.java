@@ -3,6 +3,7 @@ package peelabus.com.authentication;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
@@ -24,6 +25,7 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
 
     private OnLoginInteractionListener mListener;
     private AppCompatEditText editText1;
+    private TextInputLayout txtl_1;
 
     public ForgotPasswordFragment() {
         // Required empty public constructor
@@ -60,10 +62,11 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
         View body = inflater.inflate(R.layout.fragment_forgot_password, null);
 
         body.findViewById(R.id.textInputLayout2).setVisibility(View.GONE);
-
-        editText1 = view.findViewById(R.id.editText1);
-
         mBodyVIew.addView(body);
+        editText1 = view.findViewById(R.id.editText1);
+        txtl_1 = view.findViewById(R.id.textInputLayout1);
+        txtl_1.setHint(getString(R.string.enter_mobile_number));
+//        editText1.setHint(R.string.enter_mobile_number);
         //Initializing views
         /*editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
         Button forgotPassword = (Button) body.findViewById(R.id.forgot_password);
