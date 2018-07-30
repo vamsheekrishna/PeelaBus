@@ -17,6 +17,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://admin.peelabus.com/webservices/\""
+            //buildConfigField "String", "LOGIN_URL", "http://admin.peelabus.com/webservices/parentlogin.asmx/ParentLogin"
+        }
     }
 }
 

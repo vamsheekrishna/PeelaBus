@@ -8,4 +8,10 @@
     <dimen name="logname">20dp</dimen>
     <dimen name="logn">50dp</dimen>
     <dimen name="footer_yellow_button_height">40dp</dimen>
+
+    <!--dummy-->
+    <dimen name="icon_top_margin">24dp</dimen>
+    <dimen name="icon_bottom_margin">24dp</dimen>
+    <dimen name="title_bottom_margin">16dp</dimen>
+    <dimen name="field_width_standard">160dp</dimen>
 </resources>

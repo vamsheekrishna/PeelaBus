@@ -1,10 +1,8 @@
 package peelabus.com.baseclasses;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,7 @@ import android.widget.ProgressBar;
 
 import peelabus.com.R;
 
-public class CustomFragment extends DialogFragment {
+public class CustomDialogFragment extends DialogFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -23,12 +21,12 @@ public class CustomFragment extends DialogFragment {
 
     private OnBaseAppListener mListener;
 
-    public CustomFragment() {
+    public CustomDialogFragment() {
         // Required empty public constructor
     }
 
-    public static CustomFragment newInstance(String param1, String param2) {
-        CustomFragment fragment = new CustomFragment();
+    public static CustomDialogFragment newInstance(String param1, String param2) {
+        CustomDialogFragment fragment = new CustomDialogFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

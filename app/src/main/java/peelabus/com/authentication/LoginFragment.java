@@ -1,6 +1,5 @@
 package peelabus.com.authentication;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,15 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,11 +24,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import peelabus.com.R;
-import peelabus.com.baseclasses.BaseFragment;
-import peelabus.com.models.ParentLogin;
+import peelabus.com.baseclasses.NetworkBaseFragment;
+import peelabus.com.baseclasses.PeelaBusAPI;
 import peelabus.com.peelabus.Config;
 
-public class LoginFragment extends BaseFragment implements View.OnClickListener {
+public class LoginFragment extends NetworkBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -116,6 +107,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         //Getting values from edit texts
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
+
+        Map<String,String> params = new HashMap<>();
+        params.put(PeelaBusAPI.ParentLogin.EMAIL_KEY, email);
+        params.put(PeelaBusAPI.ParentLogin.PASSWORD_KEY, password);
+        stringRequest(params, Request.Method.POST, PeelaBusAPI.ParentLogin.URL);
+        /*
         final ProgressDialog pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...");
         pDialog.show();
@@ -151,8 +148,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                                     //Creating editor to store values to shared preferences
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                   /*Gson gson = new GsonBuilder().create();
-                                   ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*/
+                                   *//*Gson gson = new GsonBuilder().create();
+                                   ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*//*
                                     //Adding values to editor
                                     editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
                                     editor.putString(Config.EMAIL_SHARED_PREF, email);
@@ -191,8 +188,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
 //                params.put("Content-Type", "application/json");
-                params.put(Config.KEY_EMAIL, email);
-                params.put(Config.KEY_PASSWORD, password);
+                params.put(Config.EMAIL_KEY, email);
+                params.put(Config.PASSWORD_KEY, password);
 
                 //returning parameter
                 return params;
@@ -202,7 +199,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         //Adding the string request to the queue
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
-        Log.i("req", "req" + requestQueue);
+        Log.i("req", "req" + requestQueue);*/
     }
 
     @Override
@@ -262,4 +259,52 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     }
 
 
+    @Override
+    public void onSuccessResponse(String response) {
+
+        Log.i("resp1", "resp1: " + response);
+        //If we are getting success from server
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.i("jsonObj", "jsonObj:" + jsonObject);
+        JSONArray result = null;
+        try {
+            result = jsonObject.getJSONArray("Result");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.i("jsonarray","jsonarray:" + result);
+        if (result != null && result.length()>0) {
+            if (!response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
+                //Creating a shared preference
+                Log.i("resp", "resp: " + response);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+                //Creating editor to store values to shared preferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                   /*Gson gson = new GsonBuilder().create();
+                                   ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*/
+                //Adding values to editor
+                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                editor.putString(Config.EMAIL_SHARED_PREF, editTextEmail.getText().toString().trim());
+                editor.putString(Config.RESPONSE, response);
+                //Saving values to editor
+                editor.commit();
+                mListener.goToHomeScreen();
+            }
+        }else{
+            //If the server response is not success
+            //Displaying an error message on toast
+            Toast.makeText(getContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onFailureResponse(String response, String exception) {
+
+    }
 }

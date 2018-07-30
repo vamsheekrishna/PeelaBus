@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    tools:context=".baseclasses.CustomFragment">
+    tools:context=".baseclasses.CustomDialogFragment">
 
     <ImageView
         android:layout_width="match_parent"
@@ -27,7 +27,8 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/network_stability_check"
             android:text="@string/check_network_status" />
-        <android.support.v7.widget.AppCompatButton
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

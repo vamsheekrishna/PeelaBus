@@ -3,7 +3,7 @@ package peelabus.com.peelabus;
 
 public class Config {
     //URL to our login.php file
-    public static final String LOGIN_URL = "http://admin.peelabus.com/webservices/parentlogin.asmx/ParentLogin";
+    //public static final String LOGIN_URL = "http://admin.peelabus.com/webservices/parentlogin.asmx/ParentLogin";
 
     public static final String DRIVER_URL = "http://admin.peelabus.com/Webservices/DriverDetailsid.asmx/DriverDetail";
 
@@ -12,8 +12,7 @@ public class Config {
     public static final String WAYPOINTS_URL = "http://admin.peelabus.com/webservices/Segmentdirection.asmx/WayDirection";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
-    public static final String KEY_EMAIL = "username";
-    public static final String KEY_PASSWORD = "password";
+
 
     public static final String USER = "txtUser";
     public static final String CURRENT = "txtCurrPass";
