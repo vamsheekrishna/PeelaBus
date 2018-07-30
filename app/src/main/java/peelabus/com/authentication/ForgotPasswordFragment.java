@@ -75,7 +75,7 @@ public class ForgotPasswordFragment extends NetworkBaseFragment implements View.
 
         TextInputLayout textInputEditText = body.findViewById(R.id.textInputLayout1);
         editText1 = textInputEditText.findViewById(R.id.editText1);
-
+        textInputEditText.setHint(getString(R.string.enter_mobile_number));
         mBodyVIew.addView(body);
         //Initializing views
         /*editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
