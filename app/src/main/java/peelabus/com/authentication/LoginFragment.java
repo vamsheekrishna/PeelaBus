@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import peelabus.com.BuildConfig;
 import peelabus.com.R;
 import peelabus.com.baseclasses.NetworkBaseFragment;
 import peelabus.com.baseclasses.PeelaBusAPI;
@@ -75,11 +76,13 @@ public class LoginFragment extends NetworkBaseFragment implements View.OnClickLi
         editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
         Button forgotPassword = (Button) body.findViewById(R.id.forgot_password);
         forgotPassword.setOnClickListener(this);
-        editTextEmail.setText("7877006485");
         editTextPassword = (EditText) body.findViewById(R.id.editTextPassword);
-        editTextPassword.setText("111111");
         AppCompatButton buttonLogin = (AppCompatButton) body.findViewById(R.id.ok_button);
 
+        if(BuildConfig.IS_DEBUG) {
+            editTextEmail.setText("7877006485");
+            editTextPassword.setText("121212");
+        }
         //Adding click listener
         assert buttonLogin != null;
         buttonLogin.setOnClickListener(this);
@@ -112,94 +115,6 @@ public class LoginFragment extends NetworkBaseFragment implements View.OnClickLi
         params.put(PeelaBusAPI.ParentLogin.EMAIL_KEY, email);
         params.put(PeelaBusAPI.ParentLogin.PASSWORD_KEY, password);
         stringRequest(params, Request.Method.POST, PeelaBusAPI.ParentLogin.URL);
-        /*
-        final ProgressDialog pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Loading...");
-        pDialog.show();
-        //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LOGIN_URL,
-
-                new Response.Listener<String>() {
-
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            Log.i("resp1", "resp1: " + response);
-                            //If we are getting success from server
-                            JSONObject jsonObject = null;
-                            try {
-                                jsonObject = new JSONObject(response);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            Log.i("jsonObj", "jsonObj:" + jsonObject);
-                            JSONArray result = null;
-                            try {
-                                result = jsonObject.getJSONArray("Result");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            Log.i("jsonarray","jsonarray:" + result);
-                            if (result != null && result.length()>0) {
-                                if (!response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
-                                    //Creating a shared preference
-                                    Log.i("resp", "resp: " + response);
-                                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                                    //Creating editor to store values to shared preferences
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                   *//*Gson gson = new GsonBuilder().create();
-                                   ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*//*
-                                    //Adding values to editor
-                                    editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                    editor.putString(Config.EMAIL_SHARED_PREF, email);
-                                    editor.putString(Config.RESPONSE, response);
-                                    //Saving values to editor
-                                    editor.commit();
-                                    mListener.goToHomeScreen();
-                                }
-                            }else{
-                                //If the server response is not success
-                                //Displaying an error message on toast
-                                Toast.makeText(getContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
-                            }
-                        } catch (Exception e) {
-                            Toast.makeText(getContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
-                        } finally {
-                            pDialog.dismiss();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        try {
-
-                        } catch (Exception e){
-
-                        } finally {
-                            pDialog.dismiss();
-                        }
-                        //You can handle error here if you want
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                //Adding parameters to request
-//                params.put("Content-Type", "application/json");
-                params.put(Config.EMAIL_KEY, email);
-                params.put(Config.PASSWORD_KEY, password);
-
-                //returning parameter
-                return params;
-            }
-        };
-
-        //Adding the string request to the queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        requestQueue.add(stringRequest);
-        Log.i("req", "req" + requestQueue);*/
     }
 
     @Override
@@ -260,42 +175,23 @@ public class LoginFragment extends NetworkBaseFragment implements View.OnClickLi
 
 
     @Override
-    public void onSuccessResponse(String response) {
+    public void onSuccessResponse(JSONArray result) {
 
-        Log.i("resp1", "resp1: " + response);
-        //If we are getting success from server
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(response);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.i("jsonObj", "jsonObj:" + jsonObject);
-        JSONArray result = null;
-        try {
-            result = jsonObject.getJSONArray("Result");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.i("jsonarray","jsonarray:" + result);
         if (result != null && result.length()>0) {
-            if (!response.equalsIgnoreCase(Config.LOGIN_SUCCESS)) {
-                //Creating a shared preference
-                Log.i("resp", "resp: " + response);
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            //Log.i("resp", "resp: " + response);
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                //Creating editor to store values to shared preferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                   /*Gson gson = new GsonBuilder().create();
-                                   ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*/
-                //Adding values to editor
-                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                editor.putString(Config.EMAIL_SHARED_PREF, editTextEmail.getText().toString().trim());
-                editor.putString(Config.RESPONSE, response);
-                //Saving values to editor
-                editor.commit();
-                mListener.goToHomeScreen();
-            }
+            //Creating editor to store values to shared preferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            /*Gson gson = new GsonBuilder().create();
+            ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*/
+            //Adding values to editor
+            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+            editor.putString(Config.EMAIL_SHARED_PREF, editTextEmail.getText().toString().trim());
+            editor.putString(Config.RESPONSE, result.toString());
+            //Saving values to editor
+            editor.apply();
+            mListener.goToHomeScreen();
         }else{
             //If the server response is not success
             //Displaying an error message on toast

@@ -27,12 +27,12 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/network_stability_check"
             android:text="@string/check_network_status" />
-        <LinearLayout
+        <android.support.v7.widget.AppCompatButton
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textSize="20sp"
             android:id="@+id/app_close_button"
             android:textColor="@color/colorBackground"

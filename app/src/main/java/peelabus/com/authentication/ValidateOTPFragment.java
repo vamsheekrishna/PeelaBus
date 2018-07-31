@@ -1,13 +1,9 @@
 package peelabus.com.authentication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,14 +29,15 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import peelabus.com.BuildConfig;
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseFragment;
 
 public class ValidateOTPFragment extends BaseFragment implements View.OnClickListener {
-    private static final String ARG_PARAM1 = "param1";
+    private static final String PHONE_NUMBER = "phone_number";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
+    private String mPhoneNumber = "";
     private String mParam2;
 
     private OnLoginInteractionListener mListener;
@@ -66,19 +64,19 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
-    private ViewGroup mPhoneNumberViews;
-    private ViewGroup mSignedInViews;
+    //private ViewGroup mPhoneNumberViews;
+    //private ViewGroup mSignedInViews;
 
-    private TextView mStatusText;
+    //private TextView mStatusText;
     private TextView mDetailText;
 
-    private EditText mPhoneNumberField;
+    //private EditText mPhoneNumberField;
     private EditText mVerificationField;
 
-    private Button mStartButton;
+    //private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
-    private Button mSignOutButton;
+    //private Button mSignOutButton;
 
     ProgressBar progressBar;
 
@@ -90,7 +88,7 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
     public static ValidateOTPFragment newInstance(String param1, String param2) {
         ValidateOTPFragment fragment = new ValidateOTPFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(PHONE_NUMBER, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -100,7 +98,7 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mPhoneNumber = getArguments().getString(PHONE_NUMBER);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -117,41 +115,31 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
         mHeaderVIew.addView(header);
         View body = inflater.inflate(R.layout.fragment_validate_otp, null);
         mBodyVIew.addView(body);
-
         setView(body);
-        /*AppCompatTextView loginBodyViewHeader = body.findViewById(R.id.login_body_view_header);
-        loginBodyViewHeader.setText(getText(R.string.otp));
-        AppCompatButton buttonLogin = body.findViewById(R.id.ok_button);
-        buttonLogin.setText(getText(R.string.next));
-        //Adding click listener
-        assert buttonLogin != null;
-        buttonLogin.setOnClickListener(this);*/
         return view;
     }
 
     private void setView(final View body) {
-        progressBar = (ProgressBar) body.findViewById(R.id.progressBar);
+        progressBar = body.findViewById(R.id.progressBar);
 
         // Assign views
-        mPhoneNumberViews = (ViewGroup) body.findViewById(R.id.phone_auth_fields);
-        mSignedInViews = (ViewGroup) body.findViewById(R.id.signed_in_buttons);
+        //mPhoneNumberViews = (ViewGroup) body.findViewById(R.id.phone_auth_fields);
+        //mSignedInViews = (ViewGroup) body.findViewById(R.id.signed_in_buttons);
 
-        mStatusText = (TextView) body.findViewById(R.id.status);
-        mDetailText = (TextView) body.findViewById(R.id.detail);
+        //mStatusText = body.findViewById(R.id.status);
+        mDetailText = body.findViewById(R.id.detail);
 
-        mPhoneNumberField = (EditText) body.findViewById(R.id.field_phone_number);
-        mVerificationField = (EditText) body.findViewById(R.id.field_verification_code);
+        //mPhoneNumberField = (EditText) body.findViewById(R.id.field_phone_number);
+        mVerificationField = body.findViewById(R.id.field_verification_code);
 
-        mStartButton = (Button) body.findViewById(R.id.button_start_verification);
-        mVerifyButton = (Button) body.findViewById(R.id.button_verify_phone);
-        mResendButton = (Button) body.findViewById(R.id.button_resend);
-        mSignOutButton = (Button) body.findViewById(R.id.sign_out_button);
+        //mStartButton = (Button) body.findViewById(R.id.button_start_verification);
+        mVerifyButton = body.findViewById(R.id.button_verify_phone);
+        mResendButton = body.findViewById(R.id.button_resend);
+        //mSignOutButton = (Button) body.findViewById(R.id.sign_out_button);
 
         // Assign click listeners
-        mStartButton.setOnClickListener(this);
         mVerifyButton.setOnClickListener(this);
         mResendButton.setOnClickListener(this);
-        mSignOutButton.setOnClickListener(this);
 
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
@@ -193,13 +181,14 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     // [START_EXCLUDE]
-                    mPhoneNumberField.setError("Invalid phone number.");
+                    mVerificationField.setError("Invalid phone number.");
                     // [END_EXCLUDE]
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     // [START_EXCLUDE]
-                    Snackbar.make(body.findViewById(android.R.id.content), "Quota exceeded.",
-                            Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Quota exceeded.", Toast.LENGTH_SHORT).show();
+                    /*Snackbar.make(body.findViewById(android.R.id.content), "Quota exceeded.",
+                            Snackbar.LENGTH_SHORT).show();*/
                     // [END_EXCLUDE]
                 }
 
@@ -234,17 +223,15 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
 
-        // [START_EXCLUDE]
         if (mVerificationInProgress && validatePhoneNumber()) {
-            startPhoneNumberVerification(mPhoneNumberField.getText().toString());
+            startPhoneNumberVerification(mPhoneNumber);
         }
-        // [END_EXCLUDE]
+        startVerification();
+
     }
-    // [END on_start_check_user]
 
 
     @Override
@@ -271,7 +258,7 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
         // [END start_phone_auth]
 
         mVerificationInProgress = true;
-        mStatusText.setVisibility(View.INVISIBLE);
+        //mStatusText.setVisibility(View.INVISIBLE);
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
@@ -356,29 +343,28 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
         switch (uiState) {
             case STATE_INITIALIZED:
                 // Initialized state, show only the phone number field and start button
-                enableViews(mStartButton, mPhoneNumberField);
+                //enableViews(mStartButton, mPhoneNumber);
                 disableViews(mVerifyButton, mResendButton, mVerificationField);
                 mDetailText.setText(null);
                 break;
             case STATE_CODE_SENT:
+                progressBar.setVisibility(View.INVISIBLE);
                 // Code sent state, show the verification field, the
-                enableViews(mVerifyButton, mResendButton, mPhoneNumberField, mVerificationField);
-                disableViews(mStartButton);
+                enableViews(mVerifyButton, mResendButton, /*mPhoneNumberField,*/ mVerificationField);
+                //disableViews(mStartButton);
                 mDetailText.setText(R.string.status_code_sent);
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
                 break;
             case STATE_VERIFY_FAILED:
                 // Verification has failed, show all options
-                enableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
-                        mVerificationField);
+                enableViews(/*mStartButton,*/ mVerifyButton, mResendButton, /*mPhoneNumberField, */mVerificationField);
                 mDetailText.setText(R.string.status_verification_failed);
                 mDetailText.setTextColor(Color.parseColor("#dd2c00"));
                 progressBar.setVisibility(View.INVISIBLE);
                 break;
             case STATE_VERIFY_SUCCESS:
                 // Verification has succeeded, proceed to firebase sign in
-                disableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
-                        mVerificationField);
+                disableViews(/*mStartButton,*/ mVerifyButton, mResendButton, /*mPhoneNumberField, */mVerificationField);
                 mDetailText.setText("Verfication Sucessfull");
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
                 progressBar.setVisibility(View.INVISIBLE);
@@ -402,19 +388,19 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
                 break;
             case STATE_SIGNIN_SUCCESS:
                 // Np-op, handled by sign-in check
-                mStatusText.setText(R.string.signed_in);
+                //mStatusText.setText(R.string.signed_in);
                 break;
         }
 
         if (user == null) {
             // Signed out
-            mPhoneNumberViews.setVisibility(View.VISIBLE);
-            mSignedInViews.setVisibility(View.GONE);
+            mVerificationField.setVisibility(View.VISIBLE);
+            //mSignedInViews.setVisibility(View.GONE);
 
-            mStatusText.setText(R.string.signed_out);;
+            //mStatusText.setText(R.string.signed_out);;
         } else {
             // Signed in
-            mPhoneNumberViews.setVisibility(View.GONE);
+            mVerificationField.setVisibility(View.GONE);
             /*
             mSignedInViews.setVisibility(View.VISIBLE);
 
@@ -429,14 +415,14 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
             startActivity(intent);
             finish();*/
             signOut();
-            mListener.goToChangePasswordScreen();
+            mListener.goToChangePasswordScreen(mPhoneNumber);
         }
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumber = mPhoneNumberField.getText().toString();
-        if (TextUtils.isEmpty(phoneNumber)) {
-            mPhoneNumberField.setError("Invalid phone number.");
+        //String phoneNumber = mPhoneNumberField.getText().toString();
+        if (TextUtils.isEmpty(mPhoneNumber)) {
+            mVerificationField.setError("Invalid phone number.");
             //mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
             return false;
         }
@@ -452,7 +438,11 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
 
     private void disableViews(View... views) {
         for (View v : views) {
-            v.setEnabled(false);
+            try {
+                v.setEnabled(false);
+            } catch (Exception e) {
+
+            }
         }
     }
 
@@ -460,42 +450,52 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button_start_verification:
-                if (!validatePhoneNumber()) {
-                    return;
-                }
-
-                ///////hide keyboard start
-                InputMethodManager inputManager = (InputMethodManager)
-                        getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
-                /////////hide keyboard end
-
-
-                //mStatusText.setText("Authenticating....!");
-                progressBar.setVisibility(View.VISIBLE);
-                startPhoneNumberVerification(mPhoneNumberField.getText().toString());
-
-                break;
             case R.id.button_verify_phone:
-                String code = mVerificationField.getText().toString();
-                if (TextUtils.isEmpty(code)) {
-                    mVerificationField.setError("Cannot be empty.");
-                    return;
-                }
+                if(BuildConfig.IS_DEBUG) {
+                    mListener.goToChangePasswordScreen(mPhoneNumber);
+                } else {
+                    String code = mVerificationField.getText().toString();
+                    if (TextUtils.isEmpty(code)) {
+                        mVerificationField.setError("Cannot be empty.");
+                        return;
+                    }
 
-                verifyPhoneNumberWithCode(mVerificationId, code);
+                    verifyPhoneNumberWithCode(mVerificationId, code);
+                }
                 break;
             case R.id.button_resend:
-                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
+                resendVerificationCode(mPhoneNumber, mResendToken);
                 break;
-            case R.id.sign_out_button:
+            /*case R.id.sign_out_button:
                 signOut();
-                break;
+                break;*/
         }
     }
+
+    private void startVerification() {
+        if (!validatePhoneNumber()) {
+            return;
+        }
+
+        try {
+
+            ///////hide keyboard start
+            InputMethodManager inputManager = (InputMethodManager)
+                    getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+            /////////hide keyboard end
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        //mStatusText.setText("Authenticating....!");
+        progressBar.setVisibility(View.VISIBLE);
+        startPhoneNumberVerification(mPhoneNumber);
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

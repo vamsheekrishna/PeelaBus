@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackground">#FFE34C</color>
     <color name="colorText">#505050</color>
+    <color name="color_text_hint">#999999</color>
     <color name="white">#ffffff</color>
     <color name="loginbutt">#febc10</color>
 

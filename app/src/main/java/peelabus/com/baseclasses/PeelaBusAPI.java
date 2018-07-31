@@ -13,6 +13,12 @@ public class PeelaBusAPI {
         public static final String URL_KEY = getURL("Registerno.asmx/CheckMobileno");
         public static final String MOBILE_NUMBER_KEY ="mobileno";
     }
+    public static class ChangePassword {
+        public static final String URL_KEY = getURL("ForgotPassword.asmx/forgotpassword");
+        public static final String KEY_1_OF_3_User ="txtUser";
+        public static final String KEY_2_OF_3_NEW_PASSWORD ="txtNewPass";
+        public static final String KEY_3_OF_3_CONFORM ="txtConfirmNewPass";
+    }
     private static String getURL(String url) {
         return BuildConfig.BASE_URL+url;
     }

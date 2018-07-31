@@ -2,22 +2,30 @@ package peelabus.com.authentication;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+
+import org.json.JSONArray;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import peelabus.com.R;
-import peelabus.com.baseclasses.BaseFragment;
+import peelabus.com.baseclasses.NetworkBaseFragment;
+import peelabus.com.baseclasses.PeelaBusAPI;
 
-public class ChangePasswordFragment extends BaseFragment implements View.OnClickListener {
+public class ChangePasswordFragment extends NetworkBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
+    private String mPhoneNumber;
     private String mParam2;
 
     private OnLoginInteractionListener mListener;
@@ -40,7 +48,7 @@ public class ChangePasswordFragment extends BaseFragment implements View.OnClick
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mPhoneNumber = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -55,16 +63,14 @@ public class ChangePasswordFragment extends BaseFragment implements View.OnClick
         View view = super.onCreateView(inflater, container, savedInstanceState);
         View header = inflater.inflate(R.layout.login_header,null);
         mHeaderVIew.addView(header);
-        View body = inflater.inflate(R.layout.fragment_forgot_password, null);
+        View body = inflater.inflate(R.layout.fragment_change_password, null);
         mBodyVIew.addView(body);
 
         body.findViewById(R.id.textInputLayout2).setVisibility(View.VISIBLE);
 
         editText1 = view.findViewById(R.id.editText1);
-        editText1.setHint(getString(R.string.new_password));
 
         editText2 = view.findViewById(R.id.editText2);
-        editText2.setHint(getString(R.string.confirm_password));
 
         AppCompatTextView loginBodyViewHeader = body.findViewById(R.id.login_body_view_header);
         loginBodyViewHeader.setText(getText(R.string.reset_password_text));
@@ -104,8 +110,35 @@ public class ChangePasswordFragment extends BaseFragment implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ok_button :
-                    mListener.goToLoginScreen();
+                String temp = editText1.getText().toString().trim();
+                if(!temp.isEmpty() && temp.equals(editText2.getText().toString().trim())){
+                    try {
+                        Map<String,String> params = new HashMap<>();
+                        params.put(PeelaBusAPI.ChangePassword.KEY_1_OF_3_User,mPhoneNumber );
+                        params.put(PeelaBusAPI.ChangePassword.KEY_2_OF_3_NEW_PASSWORD,temp );
+                        params.put(PeelaBusAPI.ChangePassword.KEY_3_OF_3_CONFORM,temp );
+                        stringRequest(params, Request.Method.POST, PeelaBusAPI.ChangePassword.URL_KEY);
+                    } catch ( Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Please enter valid Phone Number", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
+    }
+
+    @Override
+    public void onSuccessResponse(JSONArray response) {
+        /*if( response.length()>0 ) {*/
+            mListener.goToLoginScreen();
+        /*} else {
+            Toast.makeText(getActivity(), "Please enter valid number.", Toast.LENGTH_SHORT).show();
+        }*/
+    }
+
+    @Override
+    public void onFailureResponse(String response, String exception) {
+        Toast.makeText(getActivity(), "Please enter valid number.", Toast.LENGTH_SHORT).show();
     }
 }

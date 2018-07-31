@@ -11,6 +11,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Map;
 
 public abstract class NetworkBaseFragment extends BaseFragment implements OnNetworkInteractionListener {
@@ -28,9 +32,11 @@ public abstract class NetworkBaseFragment extends BaseFragment implements OnNetw
         //Getting values from edit texts
         /*final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();*/
-        final ProgressDialog pDialog = new ProgressDialog(getActivity());
+
+        /*final ProgressDialog pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...");
-        pDialog.show();
+        pDialog.show();*/
+        showDialog(false);
         //Creating a string request
         StringRequest stringRequest = new StringRequest(method, URL,
 
@@ -39,11 +45,27 @@ public abstract class NetworkBaseFragment extends BaseFragment implements OnNetw
                     @Override
                     public void onResponse(String response) {
                         try {
-                            onSuccessResponse(response);
+                            Log.i("resp1", "resp1: " + response);
+                            //If we are getting success from server
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Log.i("jsonObj", "jsonObj:" + jsonObject);
+                            JSONArray result = null;
+                            try {
+                                result = jsonObject.getJSONArray("Result");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            onSuccessResponse(result);
                         } catch (Exception e) {
                             onFailureResponse(response, e.getMessage());
                         } finally {
-                            pDialog.dismiss();
+                            dismissDialog();
+                            //pDialog.dismiss();
                         }
                     }
                 },
@@ -55,7 +77,7 @@ public abstract class NetworkBaseFragment extends BaseFragment implements OnNetw
                         } catch (Exception e){
                             onFailureResponse(error.getMessage(), error.getMessage());
                         } finally {
-                            pDialog.dismiss();
+                            dismissDialog();
                         }
                         //You can handle error here if you want
                     }

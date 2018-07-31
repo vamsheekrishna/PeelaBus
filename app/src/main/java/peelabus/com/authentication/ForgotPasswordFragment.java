@@ -1,31 +1,26 @@
 package peelabus.com.authentication;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 
+import org.json.JSONArray;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import peelabus.com.BuildConfig;
 import peelabus.com.R;
-import peelabus.com.baseclasses.BaseFragment;
 import peelabus.com.baseclasses.NetworkBaseFragment;
 import peelabus.com.baseclasses.PeelaBusAPI;
-import peelabus.com.models.ParentLogin;
-import peelabus.com.peelabus.Config;
 
 public class ForgotPasswordFragment extends NetworkBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -71,24 +66,18 @@ public class ForgotPasswordFragment extends NetworkBaseFragment implements View.
         mHeaderVIew.addView(header);
         View body = inflater.inflate(R.layout.fragment_forgot_password, null);
 
-        body.findViewById(R.id.textInputLayout2).setVisibility(View.GONE);
-
         TextInputLayout textInputEditText = body.findViewById(R.id.textInputLayout1);
         editText1 = textInputEditText.findViewById(R.id.editText1);
         textInputEditText.setHint(getString(R.string.enter_mobile_number));
         mBodyVIew.addView(body);
         //Initializing views
-        /*editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
-        Button forgotPassword = (Button) body.findViewById(R.id.forgot_password);
-        forgotPassword.setOnClickListener(this);
-        editTextEmail.setText("7877006485");
-        editTextPassword = (EditText) body.findViewById(R.id.editTextPassword);
-        editTextPassword.setText("111111");*/
         AppCompatButton buttonLogin = body.findViewById(R.id.ok_button);
 
         //Adding click listener
-        assert buttonLogin != null;
         buttonLogin.setOnClickListener(this);
+        if(BuildConfig.IS_DEBUG) {
+            editText1.setText("7877006485");
+        }
         return view;
     }
 
@@ -119,7 +108,7 @@ public class ForgotPasswordFragment extends NetworkBaseFragment implements View.
                     params.put(PeelaBusAPI.CheckMobileNumber.MOBILE_NUMBER_KEY,temp );
                     stringRequest(params, Request.Method.POST, PeelaBusAPI.CheckMobileNumber.URL_KEY);
                 } catch ( Exception e) {
-
+                    e.printStackTrace();
                 }
 
                 break;
@@ -127,12 +116,20 @@ public class ForgotPasswordFragment extends NetworkBaseFragment implements View.
     }
 
     @Override
-    public void onSuccessResponse(String response) {
-        mListener.goToOTPScreen();
+    public void onSuccessResponse(JSONArray response) {
+        if (response != null && response.length()>0 || BuildConfig.IS_DEBUG) {
+            mListener.goToOTPScreen(editText1.getText().toString().trim());
+        } else {
+            Toast.makeText(getActivity(), "Please enter valid mobile number.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onFailureResponse(String response, String exception) {
-        Toast.makeText(getActivity(),"Please enter valid phone number", Toast.LENGTH_SHORT).show();
+        if (BuildConfig.IS_DEBUG) {
+            mListener.goToOTPScreen(editText1.getText().toString().trim());
+        } else {
+            Toast.makeText(getActivity(), "Please enter valid phone number", Toast.LENGTH_SHORT).show();
+        }
     }
 }

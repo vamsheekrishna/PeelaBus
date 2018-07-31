@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Window;
 import android.widget.Toast;
 
 import peelabus.com.R;
@@ -21,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     boolean isWifiConnected = false;
     boolean isMobileDataConnected = false;
     protected String TAG = "BaseActivity";
-    private GlobalDialogBox globalDialogBox;
+    CustomDialogFragment customFragment;
 
     public void setTagName(String name) {
         String classpath[] = name.split("\\.");
@@ -30,9 +31,20 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this);
-    }
 
+        //customFragment = CustomDialogFragment.newInstance("", "");
+        //globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this);
+    }
+    void showDialog() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        customFragment = CustomDialogFragment.newInstance(true,"");
+        customFragment.show(ft, "dialog");
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -71,15 +83,19 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     @Override
     public void onNetworkConnected() {
         //globalDialogBox.alertDialog.dismiss();
+        if(null != customFragment && customFragment.isVisible()) {
+            customFragment.dismiss();
+        }
     }
 
     @Override
     public void onNetworkDisConnected() {
         //alertDialog();
         //globalDialogBox.alertDialog.show();
-        CustomDialogFragment customFragment = CustomDialogFragment.newInstance("", "");
-        getSupportFragmentManager().beginTransaction().add(customFragment, "customFragment").commit();
-
+        //getSupportFragmentManager().beginTransaction().add(customFragment, "customFragment").commit();
+        //customFragment.getDialog().show();
+        /**/
+        showDialog();
     }
 
     @Override

@@ -36,14 +36,16 @@ public class LoginActivity extends BaseActivity implements OnLoginInteractionLis
     public void goToHomeScreen() {
         //Starting profile activity
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        //finish();
     }
 
     @Override
     public void goToForgotPasswordScreen() {
         ForgotPasswordFragment forgotPasswordFragment = ForgotPasswordFragment.newInstance("", "");
         addFragment(forgotPasswordFragment, true, true, "Forgot Password Fragment");
-
+        //goToOTPScreen("7799495240");
     }
 
     @Override
@@ -56,15 +58,15 @@ public class LoginActivity extends BaseActivity implements OnLoginInteractionLis
     }
 
     @Override
-    public void goToOTPScreen() {
-        ValidateOTPFragment validateOTPFragment = ValidateOTPFragment.newInstance("", "");
-        addFragment(validateOTPFragment, true, true, "ValidateOTPFragment");
+    public void goToOTPScreen(String phoneNumber) {
+        ValidateOTPFragment validateOTPFragment = ValidateOTPFragment.newInstance(phoneNumber, "");
+        addFragment(validateOTPFragment, true, false, "ValidateOTPFragment");
     }
 
     @Override
-    public void goToChangePasswordScreen() {
-        ChangePasswordFragment changePasswordFragment = ChangePasswordFragment.newInstance("", "");
-        addFragment(changePasswordFragment, true, true, "ChangePasswordFragment");
+    public void goToChangePasswordScreen(String phoneNumber) {
+        ChangePasswordFragment changePasswordFragment = ChangePasswordFragment.newInstance(phoneNumber, "");
+        addFragment(changePasswordFragment, true, false, "ChangePasswordFragment");
     }
 
     @Override

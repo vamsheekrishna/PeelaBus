@@ -12,12 +12,12 @@
             android:layout_height="@dimen/footer_yellow_button_height"
             android:layout_below="@+id/view_button_body"
             android:layout_centerHorizontal="true"
-            android:id="@+id/ok_button"
             android:layout_marginTop="-20dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
-            android:text="@string/login"
             android:background="@drawable/curved_button"
+            android:id="@+id/ok_button"
+            android:text="@string/login"
             style="@style/yellow_button"/>
         <LinearLayout
             android:id="@+id/view_button_body"

@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        simpleGrid = (GridView) findViewById(R.id.gridview);
+        simpleGrid = findViewById(R.id.gridview);
         birdList.add(new Item("Track My Bus",R.mipmap.menu_track_bus));
         birdList.add(new Item("Alerts",R.mipmap.menu_alerts));
         birdList.add(new Item("Profile",R.mipmap.menu_profiles));

@@ -19,6 +19,7 @@ android {
         }
         debug {
             buildConfigField "String", "BASE_URL", "\"http://admin.peelabus.com/webservices/\""
+            buildConfigField "boolean", "IS_DEBUG", "false"
             //buildConfigField "String", "LOGIN_URL", "http://admin.peelabus.com/webservices/parentlogin.asmx/ParentLogin"
         }
     }
