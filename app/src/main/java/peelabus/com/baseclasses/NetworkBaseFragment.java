@@ -1,9 +1,9 @@
 package peelabus.com.baseclasses;
 
 
-import android.app.ProgressDialog;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,26 +17,33 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-public abstract class NetworkBaseFragment extends BaseFragment implements OnNetworkInteractionListener {
-    @Override
-    public void showProgressDialog() {
+import peelabus.com.R;
 
+public abstract class NetworkBaseFragment extends BaseFragment implements OnNetworkInteractionListener {
+
+    private CustomDialogFragment customFragment;
+
+    @Override
+    public void showProgressDialog(boolean isShowCancelButton, String string) {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment prev = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        customFragment = CustomDialogFragment.newInstance(isShowCancelButton, string);
+        customFragment.show(ft, "dialog");
     }
 
     @Override
     public void hideProgressDialog() {
-
+        if(null != customFragment && customFragment.isVisible()) {
+            customFragment.dismiss();
+        }
     }
     @Override
     public void stringRequest(final Map<String,String> params, int method, String URL) {
-        //Getting values from edit texts
-        /*final String email = editTextEmail.getText().toString().trim();
-        final String password = editTextPassword.getText().toString().trim();*/
-
-        /*final ProgressDialog pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Loading...");
-        pDialog.show();*/
-        showDialog(false);
+        showProgressDialog(false, getString(R.string.validating_data));
         //Creating a string request
         StringRequest stringRequest = new StringRequest(method, URL,
 
@@ -64,7 +71,7 @@ public abstract class NetworkBaseFragment extends BaseFragment implements OnNetw
                         } catch (Exception e) {
                             onFailureResponse(response, e.getMessage());
                         } finally {
-                            dismissDialog();
+                            hideProgressDialog();
                             //pDialog.dismiss();
                         }
                     }
@@ -77,7 +84,7 @@ public abstract class NetworkBaseFragment extends BaseFragment implements OnNetw
                         } catch (Exception e){
                             onFailureResponse(error.getMessage(), error.getMessage());
                         } finally {
-                            dismissDialog();
+                            hideProgressDialog();
                         }
                         //You can handle error here if you want
                     }
@@ -94,4 +101,13 @@ public abstract class NetworkBaseFragment extends BaseFragment implements OnNetw
         requestQueue.add(stringRequest);
         Log.i("req", "req" + requestQueue);
     }
+
+
+/*    public void showDialog(boolean isShowCancelButton) {
+
+    }
+
+    public void dismissDialog() {
+
+    }*/
 }

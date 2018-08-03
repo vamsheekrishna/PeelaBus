@@ -49,10 +49,10 @@ import java.util.TimerTask;
 
 import peelabus.com.R;
 import peelabus.com.authentication.LoginActivity;
+import peelabus.com.baseclasses.BaseActivity;
 
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     GridView simpleGrid;
     TextView parentName;
@@ -383,4 +383,8 @@ public class MainActivity extends AppCompatActivity
         notificationManager.notify(0, notification);
     }
 
+    @Override
+    public void setTagName() {
+        super.setTagName(MainActivity.class.getName());
+    }
 }

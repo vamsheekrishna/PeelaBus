@@ -21,7 +21,7 @@ import peelabus.com.R;
 import peelabus.com.baseclasses.NetworkBaseFragment;
 import peelabus.com.baseclasses.PeelaBusAPI;
 
-public class ChangePasswordFragment extends NetworkBaseFragment implements View.OnClickListener {
+public class ChangePasswordFragment extends LoginBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 

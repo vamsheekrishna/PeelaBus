@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="vertical">
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_alignParentTop="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:id="@+id/network_stability_check"
+            android:id="@+id/network_info_text"
             android:text="@string/check_network_status" />
         <android.support.v7.widget.AppCompatButton
             android:orientation="vertical"

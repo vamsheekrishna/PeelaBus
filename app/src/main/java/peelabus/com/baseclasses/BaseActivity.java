@@ -31,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setTagName();
         //customFragment = CustomDialogFragment.newInstance("", "");
         //globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this);
     }

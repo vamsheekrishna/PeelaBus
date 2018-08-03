@@ -29,7 +29,7 @@ import peelabus.com.baseclasses.NetworkBaseFragment;
 import peelabus.com.baseclasses.PeelaBusAPI;
 import peelabus.com.peelabus.Config;
 
-public class LoginFragment extends NetworkBaseFragment implements View.OnClickListener {
+public class LoginFragment extends LoginBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 

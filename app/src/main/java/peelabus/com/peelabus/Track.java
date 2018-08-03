@@ -230,7 +230,7 @@ public class Track extends AppCompatActivity implements GoogleApiClient.Connecti
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Log.d(TAG, "onMarkerClickListener: " + marker.getPosition());
+        //Log.d(TAG, "onMarkerClickListener: " + marker.getPosition());
         return false;
     }
 
@@ -262,7 +262,7 @@ public class Track extends AppCompatActivity implements GoogleApiClient.Connecti
     private Marker locationMarker;
 
     private void markerLocation(LatLng latLng) {
-        Log.i(TAG, "markerLocation(" + latLng + ")");
+        //Log.i(TAG, "markerLocation(" + latLng + ")");
         String title = latLng.latitude + ", " + latLng.longitude;
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(latLng)
@@ -300,26 +300,26 @@ public class Track extends AppCompatActivity implements GoogleApiClient.Connecti
 
         geocoder = new Geocoder(this, Locale.getDefault());
         if (lat == 0.0 && lon == 0.0 ) {
-            Log.i("lat & long are empty","lat & long are empty");
+            //Log.i("lat & long are empty","lat & long are empty");
         } else {
         addresses = geocoder.getFromLocation(lat, lon, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-        Log.i("addressesss","addressess==="+lat+lon);
+        //Log.i("addressesss","addressess==="+lat+lon);
 
         String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
         String city = addresses.get(0).getLocality();
-        Log.i("address","address=="+address);
-        Log.i("city","city=="+city);
+        //Log.i("address","address=="+address);
+        //Log.i("city","city=="+city);
         String state = addresses.get(0).getAdminArea();
-        Log.i("state","state==="+state);
+        //Log.i("state","state==="+state);
         String country = addresses.get(0).getCountryName();
-        Log.i("country","country=="+country);
+        //Log.i("country","country=="+country);
         String postalCode = addresses.get(0).getPostalCode();
         String knownName = addresses.get(0).getFeatureName();
-        Log.i("knownname","knownname==="+knownName);
+        //Log.i("knownname","knownname==="+knownName);
 
         String addressComplete = address+","+city+","+state+","+country;
         currentAddress = addressComplete;
-        Log.i("complete","comleteaddr== "+addressComplete);
+        //Log.i("complete","comleteaddr== "+addressComplete);
 
         }
 

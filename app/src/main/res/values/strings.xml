@@ -23,7 +23,7 @@
     <string name="title_activity_child">CHILDREN PROFILE</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="check_network_status">Checking Network Stability...</string>
+    <string name="check_network_status">Checking Network Stability…</string>
     <string name="login">Login</string>
     <string name="hint_password">Password</string>
     <string name="email_or_mobile_number">Email or Mobile Number</string>
@@ -37,6 +37,7 @@
     <string name="reset_password_text">Reset Your Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
+    <string name="validating_data">Validating your information…</string>
 
     <!--dummy strings-->
 
@@ -114,6 +115,9 @@
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
     <string name="cancel">Cancel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!--<string name="directionsApiKey">AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc</string>-->

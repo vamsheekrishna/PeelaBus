@@ -27,13 +27,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import org.json.JSONArray;
+
 import java.util.concurrent.TimeUnit;
 
 import peelabus.com.BuildConfig;
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseFragment;
 
-public class ValidateOTPFragment extends BaseFragment implements View.OnClickListener {
+public class ValidateOTPFragment extends LoginBaseFragment implements View.OnClickListener {
     private static final String PHONE_NUMBER = "phone_number";
     private static final String ARG_PARAM2 = "param2";
 
@@ -511,5 +513,15 @@ public class ValidateOTPFragment extends BaseFragment implements View.OnClickLis
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onSuccessResponse(JSONArray response) {
+
+    }
+
+    @Override
+    public void onFailureResponse(String response, String exception) {
+
     }
 }

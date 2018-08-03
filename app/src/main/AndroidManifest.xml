@@ -29,6 +29,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".peelabus.Splash"
             android:theme="@style/SplashTheme">
@@ -41,13 +45,6 @@
             android:name=".authentication.LoginActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".peelabus.ProfileActivity"
@@ -58,20 +55,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".peelabus.MainActivity" />
         </activity>
-        <activity android:name=".peelabus.ChildActivity"
-            android:parentActivityName=".peelabus.ProfileActivity"
-            android:label="@string/title_activity_child"/>
+        <activity
+            android:name=".peelabus.ChildActivity"
+            android:label="@string/title_activity_child"
+            android:parentActivityName=".peelabus.ProfileActivity" />
         <activity
             android:name=".peelabus.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".peelabus.Settings"
-            android:parentActivityName=".peelabus.MainActivity"/>
+        <activity
+            android:name=".peelabus.Settings"
+            android:parentActivityName=".peelabus.MainActivity" />
         <activity
             android:name=".peelabus.ChangePassword"
             android:label="@string/title_activity_change_password"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".peelabus.Settings"/>
+            android:parentActivityName=".peelabus.Settings"
+            android:theme="@style/AppTheme" />
         <activity android:name=".peelabus.Attendance" />
         <activity
             android:name=".peelabus.Alerts"
@@ -96,18 +95,25 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc" />
 
-        <activity android:name=".peelabus.NotificationSettingsActivity"
+        <activity
+            android:name=".peelabus.NotificationSettingsActivity"
             android:label="@string/title_activity_notification_settings"
-            android:parentActivityName=".peelabus.Settings">
-
-        </activity>
+            android:parentActivityName=".peelabus.Settings"></activity>
 
         <service android:name=".peelabus.MyService">
             <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"></action>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
 
+        <activity android:name=".home.PeelaBusHome"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>
