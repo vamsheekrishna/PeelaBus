@@ -37,12 +37,11 @@
             android:name=".peelabus.Splash"
             android:theme="@style/SplashTheme">
 
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+
         </activity>
         <activity
             android:name=".authentication.LoginActivity"
@@ -72,7 +71,7 @@
             android:name=".peelabus.ChangePassword"
             android:label="@string/title_activity_change_password"
             android:parentActivityName=".peelabus.Settings"
-            android:theme="@style/AppTheme" />
+             />
         <activity android:name=".peelabus.Attendance" />
         <activity
             android:name=".peelabus.Alerts"
@@ -110,8 +109,7 @@
 
         <activity
             android:name=".home.PeelaBusHome"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.AppCompat">
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
