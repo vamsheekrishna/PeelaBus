@@ -20,8 +20,6 @@ public abstract class HomeBaseFragment extends NetworkBaseFragment {
     private String mParam1;
     private String mParam2;
 
-    private OnHomeInteractionListener mListener;
-
     protected abstract View setHeaderView(LayoutInflater inflater);
     protected abstract View setBodyView(LayoutInflater inflater);
 
@@ -54,27 +52,10 @@ public abstract class HomeBaseFragment extends NetworkBaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnHomeInteractionListener) {
-            mListener = (OnHomeInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnHomeInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onSuccessResponse(JSONArray response) {
-
-    }
-
-    @Override
-    public void onFailureResponse(String response, String exception) {
-
     }
 }

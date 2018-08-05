@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 import peelabus.com.R;
@@ -108,5 +110,15 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
     public void onClick(View v) {
         ModuleItemModel moduleItemModel = (ModuleItemModel) v.getTag();
         mListener.goToNextFragment(moduleItemModel.mTitle);
+    }
+
+    @Override
+    public void onSuccessResponse(JSONArray response) {
+
+    }
+
+    @Override
+    public void onFailureResponse(String response, String exception) {
+
     }
 }
