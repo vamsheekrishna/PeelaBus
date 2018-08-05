@@ -26,4 +26,15 @@
     <color name="ColorAccent1">#CCCCCC</color>
     <color name="fab_material_grey_500">#9e9e9e</color>
 
+
+    <!--Track my Bus (maps) Screen-->
+    <color name="driver_details_info_bg">#414656</color>
+    <color name="driver_details_call_button_color">#C1C532</color>
+
+    <!--Parents Info screen-->
+    <color name="child_image_bordercolor">#DCD1B4</color>
+
+    <!--Alert Screen-->
+    <color name="pickup_drop_card_header">#3673CA</color>
+
 </resources>
