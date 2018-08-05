@@ -7,7 +7,10 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    android:layout_margin="8dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="0dp"
     android:id="@+id/root"
     android:background="@drawable/mainbutton"
     >
@@ -16,8 +19,6 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
         android:scaleType="center"
         android:src="@mipmap/menu_track_bus"/>
     <android.support.v7.widget.AppCompatTextView
@@ -25,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="@dimen/activity_horizontal_margin"
         android:text="Demo"
         android:textColor="#000" />
 
