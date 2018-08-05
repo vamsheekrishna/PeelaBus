@@ -46,7 +46,7 @@
         <activity
             android:name=".authentication.LoginActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".peelabus.ProfileActivity"
             android:label="@string/title_profiles"
@@ -112,17 +112,22 @@
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Alert.AlertActivity"
-            android:label="@string/title_activity_alert"
-            android:theme="@style/Theme.AppCompat"/>
+            android:label="@string/title_activity_alert">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".home.PeelaBusHome" />
+        </activity>
         <activity android:name=".profile.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.AppCompat"/>
+            android:label="@string/title_activity_profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".home.PeelaBusHome" />
+        </activity>
     </application>
 
 </manifest>

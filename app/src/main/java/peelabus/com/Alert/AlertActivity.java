@@ -19,6 +19,7 @@ public class AlertActivity extends BaseActivity implements OnAlertInteractionLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         addFragment(AlertsFragment.newInstance("", ""), false, false, AlertsFragment.class.getName());
     }
 

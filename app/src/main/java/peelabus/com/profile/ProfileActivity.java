@@ -12,6 +12,7 @@ public class ProfileActivity extends BaseActivity implements OnProfileInteractio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         addFragment(ProfileFragment.newInstance("", ""), false, false, ProfileFragment.class.getName());
     }
 
