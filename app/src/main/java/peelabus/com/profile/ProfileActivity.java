@@ -20,4 +20,10 @@ public class ProfileActivity extends BaseActivity implements OnProfileInteractio
     public void setTagName() {
         setTagName(ProfileActivity.class.getName());
     }
+
+    @Override
+    public void goToChildView(int childID) {
+        ChildInfoDialogFragment childInfoDialogFragment = ChildInfoDialogFragment.newInstance(false,"");
+        childInfoDialogFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
+    }
 }

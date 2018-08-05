@@ -39,6 +39,7 @@ public class PeelaBusHome extends BaseActivity implements OnHomeInteractionListe
                     startActivity(new Intent(this, ProfileActivity.class));
                     break;
                 case R.string.share:
+                    shareApp();
                     break;
                 case R.string.help:
                     break;
@@ -46,5 +47,14 @@ public class PeelaBusHome extends BaseActivity implements OnHomeInteractionListe
                     break;
             }
             Toast.makeText(this, "onClick :"+ id, Toast.LENGTH_SHORT).show();
+    }
+    public void shareApp()
+    {
+        final String appPackageName = getPackageName();
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out the App at: https://play.google.com/store/apps/details?id=" + appPackageName);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 }

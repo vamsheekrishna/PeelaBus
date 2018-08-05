@@ -144,4 +144,9 @@
     <string name="two_min">2 MIN</string>
     <string name="five_min">5 MIN</string>
     <string name="ten_min">10 MIN</string>
+    <string name="name_of_the_student">NAME OF THE STUDENT</string>
+    <string name="student_class">Class</string>
+    <string name="_1st_class">1 st Class</string>
+    <string name="section">Section</string>
+    <string name="buss_number">Buss Number</string>
 </resources>

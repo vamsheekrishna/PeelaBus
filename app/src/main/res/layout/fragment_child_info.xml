@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/view_button_body"
     android:layout_width="match_parent"
@@ -7,105 +7,116 @@
     android:layout_gravity="top"
     android:background="@drawable/loginlayout"
     android:gravity="top"
-    android:padding="16dp"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:orientation="vertical">
+    android:padding="16dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
                 <LinearLayout
-                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                        <android.support.v7.widget.AppCompatTextView
-                            android:id="@+id/textView10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <com.android.volley.toolbox.NetworkImageView
+                            android:id="@+id/child_photo"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_margin="16dp"
                             android:gravity="center"
-                            android:text="@string/parents_info"
-                            style="@style/logintitle"
-                            android:textSize="@dimen/logname" />
-
+                            android:minHeight="150dp"
+                            android:minWidth="150dp"
+                            android:background="@drawable/child_image_bg"/>
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/layout_parent_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/parent_name"
                             android:layout_marginTop="4dp"
+                            android:hint="@string/name_of_the_student"
                             >
                                 <android.support.v7.widget.AppCompatEditText
-                                    android:id="@+id/parent_name"
+                                    android:id="@+id/child_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:focusable="false"
                                     android:gravity="start"
-                                    android:text="Vamshee Krishna"
-                                    android:focusable="false"/>
+                                    android:text="Vikas Mohan"/>
                         </android.support.design.widget.TextInputLayout>
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/layout_email"
+                            android:id="@+id/layout_class"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/email"
                             android:layout_marginTop="4dp"
+                            android:hint="@string/student_class"
                             >
 
                                 <android.support.v7.widget.AppCompatEditText
                                     android:id="@+id/email"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:focusable="false"
                                     android:gravity="start"
-                                    android:text="vamsheekrishna.paleti@gmail.com"
-                                    android:focusable="false"/>
+                                    android:text="@string/_1st_class"/>
                         </android.support.design.widget.TextInputLayout>
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/layout_mobile_number"
+                            android:id="@+id/layout_section"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/mobile_number"
                             android:layout_marginTop="4dp"
+                            android:hint="@string/section"
                             >
 
                                 <android.support.v7.widget.AppCompatEditText
                                     android:id="@+id/mobile_number"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:focusable="false"
                                     android:gravity="start"
-                                    android:text="7416226233"
                                     android:inputType="textEmailAddress"
-                                    android:focusable="false"/>
+                                    android:text="E Section"/>
                         </android.support.design.widget.TextInputLayout>
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/layout_alternative_mobile_number"
+                            android:id="@+id/layout_buss_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/alternative_mobile_number"
                             android:layout_marginTop="4dp"
+                            android:hint="@string/buss_number"
                             >
 
                                 <android.support.v7.widget.AppCompatEditText
                                     android:id="@+id/alternative_mobile_number"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:focusable="false"
                                     android:gravity="start"
-                                    android:text="7416226233"
                                     android:inputType="textEmailAddress"
-                                    android:focusable="false"/>
+                                    android:text="1"/>
                         </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
                 <FrameLayout
-                    android:clickable="true"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
                     android:focusable="true">
                 </FrameLayout>
         </FrameLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/child_phots"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/ok_button"
+            style="@style/yellow_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_yellow_button_height"
+            android:layout_marginEnd="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/curved_button"
+            android:text="BACK"/>
 </LinearLayout>
+</ScrollView>

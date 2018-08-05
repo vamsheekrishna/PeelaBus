@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
         }
         ft.addToBackStack(null);
         customFragment = CustomDialogFragment.newInstance(true,"");
-        customFragment.show(ft, "dialog");
+        customFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
     }
     @Override
     protected void onResume() {

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 
@@ -109,6 +110,6 @@ public class ProfileFragment extends HomeBaseFragment implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-
+        mListener.goToChildView(102);
     }
 }
