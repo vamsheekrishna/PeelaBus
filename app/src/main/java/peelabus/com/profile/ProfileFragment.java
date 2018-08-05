@@ -2,6 +2,10 @@ package peelabus.com.profile;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +13,12 @@ import android.widget.ImageView;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+
 import peelabus.com.R;
 import peelabus.com.home.fragments.HomeBaseFragment;
 
-public class ProfileFragment extends HomeBaseFragment {
+public class ProfileFragment extends HomeBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -20,6 +26,7 @@ public class ProfileFragment extends HomeBaseFragment {
     private String mParam2;
 
     private OnProfileInteractionListener mListener;
+    private ArrayList<ImageItemModel> mChildernIDs;
 
     @Override
     protected View setHeaderView(LayoutInflater inflater) {
@@ -31,7 +38,18 @@ public class ProfileFragment extends HomeBaseFragment {
 
     @Override
     protected View setBodyView(LayoutInflater inflater) {
-        return inflater.inflate(R.layout.fragment_alerts_body, null);
+        View view = inflater.inflate(R.layout.fragment_profile_body, null);
+        RecyclerView recyclerView = view.findViewById(R.id.child_phots);
+        mChildernIDs = new ArrayList<>();
+        mChildernIDs.add(new ImageItemModel("url1"));
+        mChildernIDs.add(new ImageItemModel("url2"));
+        ImageAdapter mAdapter = new ImageAdapter(this, mChildernIDs);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1, LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
+        return view;
     }
 
     public ProfileFragment() {
@@ -86,6 +104,11 @@ public class ProfileFragment extends HomeBaseFragment {
 
     @Override
     public void onFailureResponse(String response, String exception) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

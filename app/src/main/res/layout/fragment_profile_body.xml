@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_button_body"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:background="@drawable/loginlayout"
+    android:gravity="top"
+    android:padding="16dp"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/parents_info"
+                    style="@style/logintitle"
+                    android:textSize="@dimen/logname" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layout_parent_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/parent_name"
+                    android:layout_marginTop="4dp"
+                    >
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/parent_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="Vamshee Krishna"
+                            android:focusable="false"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:layout_marginTop="4dp"
+                    >
+
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="vamsheekrishna.paleti@gmail.com"
+                            android:focusable="false"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layout_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/mobile_number"
+                    android:layout_marginTop="4dp"
+                    >
+
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="7416226233"
+                            android:inputType="textEmailAddress"
+                            android:focusable="false"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layout_alternative_mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/alternative_mobile_number"
+                    android:layout_marginTop="4dp"
+                    >
+
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/alternative_mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="7416226233"
+                            android:inputType="textEmailAddress"
+                            android:focusable="false"/>
+                </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/child_phots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

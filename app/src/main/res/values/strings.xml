@@ -126,6 +126,11 @@
     <string name="logout">Logout</string>
     <string name="title_activity_alert">AlertActivity</string>
     <string name="title_activity_profile">My Profile</string>
+    <string name="parents_info">PARENTS INFO</string>
+    <string name="parent_name">PARENT NAME</string>
+    <string name="mobile_number">MOBILE NUMBER</string>
+    <string name="email">EMAIL</string>
+    <string name="alternative_mobile_number">Alternative Mobile Number</string>
 
 
     <!--<string name="directionsApiKey">AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc</string>-->

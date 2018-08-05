@@ -42,7 +42,6 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
     @Override
     protected View setBodyView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_home_body,null);
-        recyclerView = view.findViewById(R.id.module_views);
 
         mModuleItemModel.add(new ModuleItemModel(R.string.track_my_bus,R.mipmap.menu_track_bus));
         mModuleItemModel.add(new ModuleItemModel(R.string.alerts,R.mipmap.menu_alerts));
@@ -51,6 +50,7 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
         mModuleItemModel.add(new ModuleItemModel(R.string.help,R.mipmap.menu_help_feedback));
         mModuleItemModel.add(new ModuleItemModel(R.string.logout,R.mipmap.menu_logout));
 
+        recyclerView = view.findViewById(R.id.module_views);
         mAdapter = new ModuleAdapter(this, mModuleItemModel);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
