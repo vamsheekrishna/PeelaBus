@@ -3,13 +3,10 @@ package peelabus.com.profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ProgressBar;
+
 
 import peelabus.com.R;
 
