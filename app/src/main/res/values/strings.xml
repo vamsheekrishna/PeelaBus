@@ -130,4 +130,13 @@
 
     <!--<string name="directionsApiKey">AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc</string>-->
 
+    <!--Notification Alerts screen strings-->
+    <string name="pick_up_text_heading">Pickup Location</string>
+    <string name="drop_text_heading">Drop Location</string>
+    <string name="pick_up_header">PICKUP</string>
+    <string name="drop_header">DROPPING</string>
+    <string name="get_notifications_before">Get Alerts Before</string>
+    <string name="two_min">2 MIN</string>
+    <string name="five_min">5 MIN</string>
+    <string name="ten_min">10 MIN</string>
 </resources>
