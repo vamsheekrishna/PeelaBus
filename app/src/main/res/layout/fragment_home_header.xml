@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:layout_height="wrap_content">
     <ImageView
         android:layout_gravity="center"
         android:src="@drawable/main_bg_header"
-        android:scaleType="centerInside"
-        android:layout_width="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/parentimage"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/parentname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MARKUS schulz"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:layout_marginTop="4dp"
+            style="@style/parentname"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/parentlocation"
+            style="@style/parentlocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/location_icon"
+            android:drawablePadding="5dp"
+            android:maxLines="1"
+            android:layout_marginTop="4dp"
+            android:text="Vishakhapatnam"
+            android:layout_gravity="center"
+            android:textAllCaps="true" />
+    </LinearLayout>
 
 </FrameLayout>

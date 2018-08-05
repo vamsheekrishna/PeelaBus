@@ -10,14 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import peelabus.com.R;
 import peelabus.com.home.OnHomeInteractionListener;
 import peelabus.com.home.models.ModuleAdapter;
+import peelabus.com.home.models.ModuleItemModel;
 
 
 public class HomeFragment extends HomeBaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    ArrayList<ModuleItemModel> mModuleItemModel = new ArrayList<>();
 
     private String mParam1;
     private String mParam2;
@@ -37,11 +42,19 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
         View view = inflater.inflate(R.layout.fragment_home_body,null);
         recyclerView = view.findViewById(R.id.module_views);
 
-        mAdapter = new ModuleAdapter();
+        mModuleItemModel.add(new ModuleItemModel(R.string.track_my_bus,R.mipmap.menu_track_bus));
+        mModuleItemModel.add(new ModuleItemModel(R.string.alerts,R.mipmap.menu_alerts));
+        mModuleItemModel.add(new ModuleItemModel(R.string.profile,R.mipmap.menu_profiles));
+        mModuleItemModel.add(new ModuleItemModel(R.string.share,R.mipmap.menu_shareit));
+        mModuleItemModel.add(new ModuleItemModel(R.string.help,R.mipmap.menu_help_feedback));
+        mModuleItemModel.add(new ModuleItemModel(R.string.logout,R.mipmap.menu_logout));
+
+        mAdapter = new ModuleAdapter(this, mModuleItemModel);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
        return view;
     }
 
@@ -81,7 +94,7 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
             mListener = (OnHomeInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnHomeInteractionListener");
         }
     }
 
@@ -93,6 +106,7 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getActivity(),"test",Toast.LENGTH_SHORT).show();
+        ModuleItemModel moduleItemModel = (ModuleItemModel) v.getTag();
+        mListener.goToNextFragment(moduleItemModel.mTitle);
     }
 }

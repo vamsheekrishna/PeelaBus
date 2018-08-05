@@ -26,7 +26,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="formlabel" >
+    <style name="formlabel">
         <item name="android:textSize">20dp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#888888</item>
@@ -36,7 +36,7 @@
         <item name="android:top">1120.3px</item>
     </style>
 
-    <style name="attendancechilddets" >
+    <style name="attendancechilddets">
         <item name="android:textSize">15dp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#888888</item>
@@ -46,7 +46,7 @@
         <item name="android:top">1120.3px</item>
     </style>
 
-    <style name="formlabelchange" >
+    <style name="formlabelchange">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#888888</item>
@@ -54,7 +54,7 @@
         <item name="android:left">1383.539px</item>
         <item name="android:top">1120.3px</item>
     </style>
-    
+
     <style name="field">
         <item name="android:background">#aaaaaa</item>
         <item name="android:left">1358px</item>
@@ -75,7 +75,7 @@
 
     <style name="loginbutton">
         <item name="android:background">#febc10</item>
-        <item name="android:shadowColor"> #000000</item>
+        <item name="android:shadowColor">#000000</item>
         <item name="android:left">1687.833px</item>
         <item name="android:top">1531.4px</item>
         <item name="android:textSize">16sp</item>
@@ -86,7 +86,7 @@
     </style>
 
     <style name="yellow_button">
-        <item name="android:shadowColor"> #000000</item>
+        <item name="android:shadowColor">#000000</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#fffefe</item>
@@ -111,23 +111,17 @@
     </style>
 
     <style name="parentname">
-        <item name="android:textSize">42sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#ffffff</item>
-        <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:left">2706.913px</item>
-        <item name="android:top">468.8px</item>
     </style>
 
     <style name="parentlocation">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:textColor">#ffffff</item>
-        <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:left">2800.975px</item>
-        <item name="android:top">537.8px</item>
     </style>
 
     <style name="mainbutton">
@@ -137,7 +131,7 @@
         <item name="android:width">400px</item>
         <item name="android:height">338px</item>
     </style>
-    
+
     <style name="mainbuttontext">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">Roboto</item>
@@ -165,7 +159,7 @@
     </style>
 
     <!-- Light EditTexts -->
-    <style name="ThemeOverlay.MyLightEditText" parent="ThemeOverlay.AppCompat.Dark"/>
+    <style name="ThemeOverlay.MyLightEditText" parent="ThemeOverlay.AppCompat.Dark" />
 
     <style name="ThemeOverlay.MyTextDetail" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
