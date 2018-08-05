@@ -9,6 +9,7 @@ import peelabus.com.Alert.AlertActivity;
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseActivity;
 import peelabus.com.home.fragments.HomeFragment;
+import peelabus.com.profile.ProfileActivity;
 
 public class PeelaBusHome extends BaseActivity implements OnHomeInteractionListener {
 
@@ -32,10 +33,10 @@ public class PeelaBusHome extends BaseActivity implements OnHomeInteractionListe
                 case R.string.track_my_bus:
                     break;
                 case R.string.alerts:
-                    Intent intent = new Intent(this, AlertActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(this, AlertActivity.class));
                     break;
                 case R.string.profile:
+                    startActivity(new Intent(this, ProfileActivity.class));
                     break;
                 case R.string.share:
                     break;

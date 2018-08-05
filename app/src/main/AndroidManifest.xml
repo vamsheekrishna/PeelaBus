@@ -122,6 +122,9 @@
             android:name=".Alert.AlertActivity"
             android:label="@string/title_activity_alert"
             android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".profile.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.AppCompat"/>
     </application>
 
 </manifest>

@@ -125,6 +125,7 @@
     <string name="help">Help</string>
     <string name="logout">Logout</string>
     <string name="title_activity_alert">AlertActivity</string>
+    <string name="title_activity_profile">My Profile</string>
 
 
     <!--<string name="directionsApiKey">AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc</string>-->
