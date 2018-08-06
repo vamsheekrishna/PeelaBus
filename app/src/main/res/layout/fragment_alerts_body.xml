@@ -60,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/TextColor.Black"
                     android:text="Address"
+                    android:focusable="false"
                     android:id="@+id/pick_or_drop_point_address"/>
 
             </android.support.design.widget.TextInputLayout>

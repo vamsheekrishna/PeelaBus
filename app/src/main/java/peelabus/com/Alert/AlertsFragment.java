@@ -1,7 +1,10 @@
 package peelabus.com.Alert;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import org.json.JSONArray;
 
 import peelabus.com.R;
 import peelabus.com.home.fragments.HomeBaseFragment;
+import peelabus.com.home.fragments.HomeFragment;
 
 public class AlertsFragment extends HomeBaseFragment {
     private static final String ARG_PARAM1 = "param1";
@@ -17,6 +21,8 @@ public class AlertsFragment extends HomeBaseFragment {
 
     private String mParam1;
     private String mParam2;
+
+    public static int CHOSEN_ALERT_TIME;
 
     private OnAlertInteractionListener mListener;
 
@@ -55,7 +61,45 @@ public class AlertsFragment extends HomeBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        TextInputEditText pickDropAddress = view.findViewById(R.id.pick_or_drop_point_address);
+        pickDropAddress.setText(""); //TODO: pass the address text upon receiving the data From the server.
+
+        final AppCompatButton two_min_button = view.findViewById(R.id.two_min_button);
+        final AppCompatButton five_min_button = view.findViewById(R.id.five_min_button);
+        final AppCompatButton ten_min_button = view.findViewById(R.id.ten_min_button);
+
+        two_min_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                two_min_button.setBackgroundColor(getResources().getColor(R.color.pickup_drop_card_header));
+                five_min_button.setBackgroundColor(Color.WHITE);
+                ten_min_button.setBackgroundColor(Color.WHITE);
+                CHOSEN_ALERT_TIME = 2;
+            }
+        });
+
+        five_min_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                two_min_button.setBackgroundColor(Color.WHITE);
+                five_min_button.setBackgroundColor(getResources().getColor(R.color.pickup_drop_card_header));
+                ten_min_button.setBackgroundColor(Color.WHITE);
+                CHOSEN_ALERT_TIME = 5;
+            }
+        });
+
+        ten_min_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                two_min_button.setBackgroundColor(Color.WHITE);
+                five_min_button.setBackgroundColor(Color.WHITE);
+                ten_min_button.setBackgroundColor(getResources().getColor(R.color.pickup_drop_card_header));
+                CHOSEN_ALERT_TIME = 10;
+            }
+        });
+
+        return view;
     }
 
     @Override
