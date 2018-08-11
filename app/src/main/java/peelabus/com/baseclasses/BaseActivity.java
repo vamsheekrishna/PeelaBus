@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setTagName();
         //customFragment = CustomDialogFragment.newInstance("", "");
         //globalDialogBox = new GlobalDialogBox("Network Alert", "Network Disconnected", this);
@@ -43,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnBaseAp
         }
         ft.addToBackStack(null);
         customFragment = CustomDialogFragment.newInstance(true,"");
-        customFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
+        customFragment.show(ft, "dialog");
     }
     @Override
     protected void onResume() {

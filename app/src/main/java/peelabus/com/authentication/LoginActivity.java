@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import peelabus.com.R;
 import peelabus.com.baseclasses.BaseActivity;
+import peelabus.com.home.PeelaBusHome;
 import peelabus.com.peelabus.MainActivity;
 
 public class LoginActivity extends BaseActivity implements OnLoginInteractionListener {
@@ -35,7 +36,7 @@ public class LoginActivity extends BaseActivity implements OnLoginInteractionLis
     @Override
     public void goToHomeScreen() {
         //Starting profile activity
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, PeelaBusHome.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

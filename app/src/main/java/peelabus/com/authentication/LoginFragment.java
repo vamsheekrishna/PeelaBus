@@ -73,11 +73,11 @@ public class LoginFragment extends LoginBaseFragment implements View.OnClickList
         View body = inflater.inflate(R.layout.login_body, null);
         mBodyVIew.addView(body);
         //Initializing views
-        editTextEmail = (EditText) body.findViewById(R.id.editTextEmail);
-        Button forgotPassword = (Button) body.findViewById(R.id.forgot_password);
+        editTextEmail = body.findViewById(R.id.editTextEmail);
+        Button forgotPassword = body.findViewById(R.id.forgot_password);
         forgotPassword.setOnClickListener(this);
-        editTextPassword = (EditText) body.findViewById(R.id.editTextPassword);
-        AppCompatButton buttonLogin = (AppCompatButton) body.findViewById(R.id.ok_button);
+        editTextPassword = body.findViewById(R.id.editTextPassword);
+        AppCompatButton buttonLogin = body.findViewById(R.id.ok_button);
 
         if(BuildConfig.IS_DEBUG) {
             editTextEmail.setText("7877006485");
@@ -184,7 +184,7 @@ public class LoginFragment extends LoginBaseFragment implements View.OnClickList
             //Creating editor to store values to shared preferences
             SharedPreferences.Editor editor = sharedPreferences.edit();
             /*Gson gson = new GsonBuilder().create();
-            ParentLogin parentInfo = gson.fromJson(response, ParentLogin.class);*/
+            ChildInfoObj parentInfo = gson.fromJson(response, ChildInfoObj.class);*/
             //Adding values to editor
             editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
             editor.putString(Config.EMAIL_SHARED_PREF, editTextEmail.getText().toString().trim());
@@ -201,6 +201,6 @@ public class LoginFragment extends LoginBaseFragment implements View.OnClickList
 
     @Override
     public void onFailureResponse(String response, String exception) {
-
+        Toast.makeText(getContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
     }
 }

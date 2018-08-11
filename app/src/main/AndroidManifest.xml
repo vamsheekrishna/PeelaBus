@@ -36,17 +36,16 @@
         <activity
             android:name=".peelabus.Splash"
             android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".authentication.LoginActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".peelabus.ProfileActivity"
             android:label="@string/title_profiles"
@@ -70,8 +69,7 @@
         <activity
             android:name=".peelabus.ChangePassword"
             android:label="@string/title_activity_change_password"
-            android:parentActivityName=".peelabus.Settings"
-             />
+            android:parentActivityName=".peelabus.Settings" />
         <activity android:name=".peelabus.Attendance" />
         <activity
             android:name=".peelabus.Alerts"
@@ -143,10 +141,13 @@
         <activity
             android:name=".home.PeelaBusHome"
             android:label="@string/title_activity_main">
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".Alert.AlertActivity"
@@ -155,12 +156,28 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.PeelaBusHome" />
         </activity>
-        <activity android:name=".profile.ProfileActivity"
+        <activity
+            android:name=".profile.ProfileActivity"
             android:label="@string/title_activity_profile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.PeelaBusHome" />
         </activity>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".track_my_bus.activitys.TrackMyBus"
+            android:label="@string/title_activity_track_my_bus"></activity>
     </application>
 
 </manifest>

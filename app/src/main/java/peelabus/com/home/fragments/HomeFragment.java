@@ -2,22 +2,29 @@ package peelabus.com.home.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import peelabus.com.R;
 import peelabus.com.home.OnHomeInteractionListener;
 import peelabus.com.home.models.ModuleAdapter;
 import peelabus.com.home.models.ModuleItemModel;
+import peelabus.com.home.models.ParentInfo;
+import peelabus.com.models.ChildInfoObj;
 
 
 public class HomeFragment extends HomeBaseFragment implements View.OnClickListener {
@@ -26,16 +33,19 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
 
     ArrayList<ModuleItemModel> mModuleItemModel = new ArrayList<>();
 
-    private String mParam1;
+    private List<ChildInfoObj> mParam1;
     private String mParam2;
 
     private OnHomeInteractionListener mListener;
     private RecyclerView recyclerView;
     private ModuleAdapter mAdapter;
-
+    List<ChildInfoObj> ParentDetails = null;
+    ChildInfoObj parentLogin;
     @Override
     protected View setHeaderView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_home_header,null);
+        ((AppCompatTextView)view.findViewById(R.id.parentname)).setText(parentLogin.parentname);
+        ((AppCompatTextView)view.findViewById(R.id.parentlocation)).setText(parentLogin.address);
         return view;
     }
 
@@ -64,10 +74,10 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
+    public static HomeFragment newInstance(List<ChildInfoObj> param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putSerializable(ARG_PARAM1, (Serializable) param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -77,7 +87,7 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            ParentDetails = (List<ChildInfoObj>) getArguments().getSerializable(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -86,7 +96,31 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ParentInfo parentInfo = ParentInfo.getObject(getContext());
+        parentLogin = parentInfo.mParentDetails.get(0);
        return super.onCreateView(inflater,container,savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /*JSONObject jsonObject = null;
+
+        try {
+            jsonObject = new JSONObject(resp);
+            Log.i("jsonObj", "jsonObj:" + jsonObject);
+            JSONArray result = null;
+            result = jsonObject.getJSONArray("Result");
+            Log.i("jsonarray","jsonarray:" + result);
+            JSONObject parentobject = null;
+            parentobject = new JSONObject(result.getString(0));
+            Log.i("name","name: " + parentobject);
+            String pickuppoint = parentobject.getString("pickuppoint");
+            Log.i("pickup","pickup=="+pickuppoint);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+
     }
 
     @Override
@@ -114,7 +148,7 @@ public class HomeFragment extends HomeBaseFragment implements View.OnClickListen
 
     @Override
     public void onSuccessResponse(JSONArray response) {
-
+        List<ChildInfoObj> posts = Arrays.asList(new GsonBuilder().create().fromJson(String.valueOf(response), ChildInfoObj[].class));
     }
 
     @Override

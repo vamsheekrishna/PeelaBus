@@ -11,6 +11,7 @@ import android.widget.Toast;
 import peelabus.com.R;
 import peelabus.com.authentication.LoginActivity;
 import peelabus.com.baseclasses.BaseActivity;
+import peelabus.com.home.PeelaBusHome;
 
 
 public class Splash extends BaseActivity {
@@ -43,7 +44,7 @@ public class Splash extends BaseActivity {
             //If we will get true
             if(loggedIn){
                 //We will start the Profile Activity
-                Intent intent = new Intent(Splash.this, MainActivity.class);
+                Intent intent = new Intent(Splash.this, PeelaBusHome.class);
                 startActivity(intent);
             } else {
                 Intent mainIntent = new Intent(Splash.this, LoginActivity.class);

@@ -149,4 +149,6 @@
     <string name="_1st_class">1 st Class</string>
     <string name="section">Section</string>
     <string name="buss_number">Buss Number</string>
+    <string name="key_parent_details">ParentDetails</string>
+    <string name="title_activity_track_my_bus">Map</string>
 </resources>
