@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "941906869417",
+    "firebase_url": "https://peelabus-in.firebaseio.com",
+    "project_id": "peelabus-in",
+    "storage_bucket": "peelabus-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941906869417:android:998a3061d429c4a5",
+        "android_client_info": {
+          "package_name": "peelabus.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941906869417-hrtvr6rrv9ua5r3lbgnh6gcsesck18st.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "peelabus.com",
+            "certificate_hash": "13a949d12d0a54e21a622885e5c180db7a97a0e8"
+          }
+        },
+        {
+          "client_id": "941906869417-fmp8up7k79nqjnsbq4t0msqiu6lke4e9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1vKAC2JYF5DnuaFwQ3BOBNFurpxEKMz0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941906869417-fmp8up7k79nqjnsbq4t0msqiu6lke4e9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
