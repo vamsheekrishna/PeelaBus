@@ -29,7 +29,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/PeelaBusCustomTheme">
+        android:theme="@style/PeelaBusCustomTheme"
+        tools:ignore="HardcodedDebugMode">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -37,11 +38,11 @@
         <activity
             android:name=".peelabus.Splash"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".authentication.LoginActivity"
@@ -91,9 +92,6 @@
                 android:value=".peelabus.MainActivity" />
         </activity>
 
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc" />
 
         <activity
             android:name=".peelabus.NotificationSettingsActivity"
@@ -165,13 +163,22 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
-        <meta-data
+        <!--<meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="@string/google_maps_key" />-->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCFVfSrSm3AONhiPBHJPexGdRJFrgw8fUc" />
 
         <activity
             android:name=".track_my_bus.activitys.TrackMyBus"
-            android:label="@string/title_activity_track_my_bus"/>
+            android:label="@string/title_activity_track_my_bus">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
