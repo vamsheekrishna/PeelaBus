@@ -18,6 +18,7 @@ import peelabus.com.home.models.ParentInfo;
 import peelabus.com.models.ChildInfoObj;
 import peelabus.com.peelabus.Config;
 import peelabus.com.profile.ProfileActivity;
+import peelabus.com.track_my_bus.activitys.TrackMyBus;
 
 public class PeelaBusHome extends BaseActivity implements OnHomeInteractionListener {
 
@@ -38,14 +39,17 @@ public class PeelaBusHome extends BaseActivity implements OnHomeInteractionListe
 
     @Override
     public void goToNextFragment(int id) {
+        Intent intent;
             switch (id) {
                 case R.string.track_my_bus:
+                    intent = new Intent(this, TrackMyBus.class);
+                    startActivity(intent);
                     break;
                 case R.string.alerts:
                     startActivity(new Intent(this, AlertActivity.class));
                     break;
                 case R.string.profile:
-                    Intent intent = new Intent(this, ProfileActivity.class);
+                    intent = new Intent(this, ProfileActivity.class);
                     startActivity(intent);
                     break;
                 case R.string.share:
