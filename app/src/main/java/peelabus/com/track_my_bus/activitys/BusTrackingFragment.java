@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,15 +62,21 @@ public class BusTrackingFragment extends NetworkBaseFragment implements OnMapRea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_my_bus);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        *//*SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);*//*
+        *//**//*
     }*/
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bus_tracking_fragment, null);
-        return view;
+        RelativeLayout relativeLayout = (RelativeLayout) inflater.inflate(R.layout.bus_tracking_fragment, null);
+        //com.google.android.gms.maps.SupportMapFragment mapFragment = relativeLayout.findViewById(R.id.bus_location);
+        //((SupportMapFragment)mapFragment).getMapAsync(this);
+        //SupportMapFragment supportMapFragment =
+        //GoogleMap map = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.bus_location)).getMap();
+
+        SupportMapFragment mapFrag = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.bus_location);
+        mapFrag.getMapAsync(this);
+        return relativeLayout;
     }
 
     @Override
@@ -104,7 +111,7 @@ public class BusTrackingFragment extends NetworkBaseFragment implements OnMapRea
         enableMyLocationIfPermitted();
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.setMinZoomPreference(11);
+        mMap.setMinZoomPreference(15);
 
     }
 
@@ -137,9 +144,7 @@ public class BusTrackingFragment extends NetworkBaseFragment implements OnMapRea
             };
 
     private void enableMyLocationIfPermitted() {
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_FINE_LOCATION},
